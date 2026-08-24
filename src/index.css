@@ -95,3 +95,70 @@
 .animate-beacon {
   animation: beacon 2s ease-in-out infinite;
 }
+
+/* Electric Circuit Flow Animations */
+@keyframes dash-flow {
+  from {
+    stroke-dashoffset: 48;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dash-flow-reverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 48;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px currentColor) drop-shadow(0 0 8px currentColor);
+    opacity: 0.9;
+  }
+  50% {
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 16px currentColor);
+    opacity: 1;
+  }
+}
+
+.animate-circuit-flow {
+  stroke-dasharray: 8 8;
+  animation: dash-flow 1s linear infinite;
+}
+
+.animate-circuit-flow-fast {
+  stroke-dasharray: 6 6;
+  animation: dash-flow 0.6s linear infinite;
+}
+
+.animate-circuit-flow-reverse {
+  stroke-dasharray: 8 8;
+  animation: dash-flow-reverse 1s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes laser-travel {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+

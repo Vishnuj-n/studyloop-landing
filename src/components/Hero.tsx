@@ -44,7 +44,7 @@ interface HeroProps {
   onExplorePro: () => void;
 }
 
-type AppTab = 'dashboard' | 'reader' | 'notebooks' | 'quiz' | 'flashcards' | 'tutor' | 'extensions';
+type AppTab = 'dashboard' | 'reader' | 'notebooks' | 'quiz' | 'flashcards' | 'examiner' | 'tutor' | 'extensions';
 
 export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
   const [activeTab, setActiveTab] = useState<AppTab>('dashboard');
@@ -56,6 +56,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
     3: 1
   });
   const [quizSubmitted, setQuizSubmitted] = useState(false);
+
+  // Examiner (Written Assessment) state
+  const [examinerAnswer, setExaminerAnswer] = useState('');
+  const [examinerSubmitted, setExaminerSubmitted] = useState(false);
 
   // Flashcards state
   const [flashcardIndex, setFlashcardIndex] = useState(0);
@@ -193,21 +197,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
               </span>
             </div>
             
-            {/* Quick Screen Switcher Tabs in Header */}
-            <div className="flex items-center bg-[#131d17] rounded-lg p-0.5 border border-[#1f3126] overflow-x-auto max-w-[420px] scrollbar-none">
-              {(['dashboard', 'reader', 'notebooks', 'quiz', 'flashcards', 'tutor', 'extensions'] as AppTab[]).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-2.5 py-1 rounded-md text-[11px] font-medium capitalize transition-all whitespace-nowrap ${
-                    activeTab === tab
-                      ? 'bg-[#1e3025] text-emerald-300 font-semibold shadow-xs'
-                      : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
+            {/* Right titlebar status indicator / window controls placeholder */}
+            <div className="flex items-center gap-2 text-slate-500 font-mono text-[11px]">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span>connected</span>
             </div>
           </div>
 
@@ -293,10 +286,17 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
                     <span>Flashcards</span>
                   </button>
 
-                  <div className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-slate-500 opacity-60 cursor-default">
+                  <button
+                    onClick={() => setActiveTab('examiner')}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                      activeTab === 'examiner'
+                        ? 'bg-[#15231c] text-emerald-400 font-semibold shadow-xs'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-[#121a15]'
+                    }`}
+                  >
                     <PenTool className="w-3.5 h-3.5 shrink-0" />
                     <span>Examiner</span>
-                  </div>
+                  </button>
 
                   <button
                     onClick={() => setActiveTab('tutor')}
@@ -937,6 +937,95 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
                     <div className="absolute bottom-3 right-4 flex items-center gap-2 text-slate-500 text-[11px] font-mono">
                       <span>Card {flashcardIndex + 1}/{flashcards.length}</span>
                     </div>
+                  </div>
+
+                </div>
+              )}
+
+              {/* ========================================================= */}
+              {/* 5B. EXAMINER / WRITTEN ASSESSMENT SCREEN (Matches user's Examiner screenshot) */}
+              {/* ========================================================= */}
+              {activeTab === 'examiner' && (
+                <div className="space-y-4 animate-fade-in">
+                  
+                  {/* Top Examiner Bar */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#18261e] pb-3">
+                    <div>
+                      <span className="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-semibold">
+                        ASSESSMENT
+                      </span>
+                      <h2 className="text-2xl font-bold text-white tracking-tight">Written Assessment</h2>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="text-right">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">NOTEBOOK</span>
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#111a15] border border-[#1d2d23] text-xs text-slate-200 cursor-pointer">
+                          <span>Predictably irrational.pdf</span>
+                          <ChevronDown className="w-3 h-3 text-slate-400" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Prompt Question Box */}
+                  <div className="p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-2.5">
+                    <p className="font-semibold text-white text-sm leading-snug">
+                      Explain why removing the print-only decoy changed most students' subscription choice in the Economist experiment.
+                    </p>
+                    <div className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-[#18261e] border border-emerald-500/20 text-[10px] font-mono uppercase text-emerald-400">
+                      PAGES 21–26
+                    </div>
+                  </div>
+
+                  {/* Written Answer Area */}
+                  <div className="space-y-2">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+                      YOUR ANSWER
+                    </span>
+
+                    <div className="relative">
+                      <textarea
+                        value={examinerAnswer}
+                        onChange={(e) => setExaminerAnswer(e.target.value)}
+                        placeholder="Write your answer here..."
+                        rows={6}
+                        className="w-full rounded-xl bg-[#090d0b] border border-[#1d2d23] p-4 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500/60 transition-colors font-sans resize-none leading-relaxed"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Action Buttons & AI Evaluation Feedback */}
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => {
+                          setExaminerAnswer('');
+                          setExaminerSubmitted(false);
+                        }}
+                        className="px-4 py-2 rounded-xl bg-[#16221b] hover:bg-[#1d2d23] text-slate-300 text-xs font-mono transition-colors border border-[#23372b]"
+                      >
+                        Discard
+                      </button>
+                      <button
+                        onClick={() => setExaminerSubmitted(true)}
+                        className="px-5 py-2 rounded-xl bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs transition-all shadow-sm active:scale-95"
+                      >
+                        Submit Answer
+                      </button>
+                    </div>
+
+                    {examinerSubmitted && (
+                      <div className="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-xs text-emerald-200 leading-relaxed space-y-1 animate-fade-in">
+                        <div className="flex items-center gap-2 font-bold text-emerald-400">
+                          <CheckCircle2 className="w-4 h-4" />
+                          <span>Evaluation: Graded Concept Mastery (92%)</span>
+                        </div>
+                        <p className="text-slate-300 text-[11px]">
+                          Great comprehension of the asymmetric dominance (decoy) effect. Removing the inferior decoy shifted reference points directly back to utility rather than relative comparison.
+                        </p>
+                      </div>
+                    )}
                   </div>
 
                 </div>

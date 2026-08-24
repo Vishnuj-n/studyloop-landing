@@ -12,7 +12,10 @@ import {
   Layers,
   Clock,
   Cpu,
-  FileText
+  FileText,
+  Compass,
+  Unlock,
+  Zap
 } from 'lucide-react';
 
 interface FeaturePillarsProps {
@@ -52,7 +55,7 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
 
         <div className="space-y-12">
           
-          {/* Pillar 1: Socratic Concept Rescue */}
+          {/* Pillar 1: Socratic Concept Rescue & Dual Tracks */}
           <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/[0.08] shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
@@ -63,25 +66,25 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                 <div className="space-y-1">
                   <span className="text-xs font-mono font-semibold uppercase text-rose-600 dark:text-rose-400 tracking-wider">Pillar 01</span>
                   <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    2-Strike Socratic Concept Rescue
+                    Dual-Track Socratic Rescue & Graceful Unblocking
                   </h3>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  When you fail a quiz twice, StudyLoop refuses to let you guess or skip ahead. Progression is halted until you actively resolve the cognitive roadblock.
+                  When a quiz fails, StudyLoop diagnoses the root misconception before you move forward. Choose between Classic 2-Strike and Fast Track remediation, with graceful unblocking so you are never trapped.
                 </p>
                 
                 <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-medium">
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
-                    <span>In-app probe tutor guides reasoning without spoiling answers.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0 mt-1.5" />
+                    <span><strong>Dual Tracks:</strong> Classic Track (Fail #1 → Targeted Reread → Fail #2 → Socratic Rescue) or Fast Track (Instant Socratic Rescue for quick debugging).</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
-                    <span>1-click clipboard prompt export for Claude 3.7 or ChatGPT.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0 mt-1.5" />
+                    <span><strong>Dual Modes:</strong> Local in-app interactive probe tutor or 1-click structured prompt export for Claude 3.7 / ChatGPT.</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0" />
-                    <span>Topic lockout unlocks only after verified re-quiz pass.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-rose-500 shrink-0 mt-1.5" />
+                    <span><strong>Graceful Unblocking:</strong> If re-quiz fails post-rescue, flags <code className="font-mono text-rose-600 dark:text-rose-300">external_help_required</code> and unblocks queue safely.</span>
                   </li>
                 </ul>
 
@@ -108,9 +111,9 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[11px] text-slate-400">
                   <span className="flex items-center gap-1.5 text-rose-400">
                     <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                    SOCRATIC_REMEDIAL LOCKOUT
+                    SOCRATIC_REMEDIAL RESCUE
                   </span>
-                  <span>Strike 2 of 2</span>
+                  <span>Classic Strike 2 / Fast Track</span>
                 </div>
                 <div className="space-y-2 leading-relaxed">
                   <p className="text-slate-400">
@@ -122,6 +125,10 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                   <p className="text-slate-400">
                     <strong className="text-slate-200">Tutor:</strong> Correct. Multi-level paging scales with active address usage. Ready for validation quiz.
                   </p>
+                </div>
+                <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[10px] text-slate-400">
+                  <span>Fail-safe: external_help_required</span>
+                  <span className="text-emerald-400">No Infinite Lockout</span>
                 </div>
               </div>
 
@@ -139,21 +146,21 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                 <div className="space-y-1">
                   <span className="text-xs font-mono font-semibold uppercase text-sky-600 dark:text-sky-400 tracking-wider">Pillar 02</span>
                   <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    Milestone Aggregate Exams & Examiner Mode
+                    Deterministic Milestone Aggregate Exams & Examiner Mode
                   </h3>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Mastering single chunks is not enough. StudyLoop automatically synthesizes comprehensive milestone exams every 10 quizzes and features written Examiner grading rubrics.
+                  Mastering single chunks is not enough. Every 10th completed quiz automatically pools and reuses questions directly from your previous 10 quiz attempts—100% deterministic, 0 token cost, and 0 hallucinations.
                 </p>
                 
                 <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-medium">
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
-                    <span><strong>Milestone Synthesis:</strong> Cross-chapter question mixing eliminates the forgetting curve.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 mt-1.5" />
+                    <span><strong>10th Quiz Milestone Pooling:</strong> Reuses verified questions from your last 10 quizzes to test long-term retention without generative token spend.</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0" />
-                    <span><strong>Examiner Mode:</strong> Page-bounded written short-answer grading on technical rigor.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-500 shrink-0 mt-1.5" />
+                    <span><strong>Examiner Mode:</strong> Technical written short-answer grading evaluated against page-bounded rubrics.</span>
                   </li>
                 </ul>
 
@@ -176,7 +183,7 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                         : 'border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400'
                     }`}
                   >
-                    Milestone 10th Quiz
+                    Deterministic 10th Quiz Pool
                   </button>
                 </div>
               </div>
@@ -201,14 +208,14 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                 ) : (
                   <div className="space-y-3">
                     <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[11px]">
-                      <span className="text-sky-400 font-semibold">MILESTONE EXAM #01</span>
-                      <span className="text-slate-400">Aggregating 10 Completed Chunks</span>
+                      <span className="text-sky-400 font-semibold">DETERMINISTIC MILESTONE EXAM</span>
+                      <span className="text-emerald-400 font-mono">0 Token Cost · Pooled</span>
                     </div>
                     <p className="text-slate-300 leading-relaxed text-xs">
-                      Question #7: Synthesizing Virtual Memory (Ch 13) with Concurrency Locks (Ch 28). How does the kernel guarantee atomic page table updates across multi-core CPU architectures?
+                      Question #7 (from Quiz #4 pool): How does the kernel guarantee atomic page table updates across multi-core CPU architectures during concurrent TLB invalidation?
                     </p>
                     <div className="p-2 rounded bg-slate-800 border border-slate-700 text-slate-300 text-[11px]">
-                      Aggregate evaluation active: Prevents isolated chapter compartmentalization.
+                      ✓ 10-Quiz Question Pool active: Reuses exact past evaluation items with zero LLM hallucinations.
                     </div>
                   </div>
                 )}
@@ -278,7 +285,7 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
             </div>
           </div>
 
-          {/* Pillar 4: Deterministic Ingestion Engine */}
+          {/* Pillar 4: Pure Go PDF Engine & Smart Concept Boundaries */}
           <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-[#111827] border border-slate-200 dark:border-white/[0.08] shadow-xs">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               
@@ -289,25 +296,25 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
                 <div className="space-y-1">
                   <span className="text-xs font-mono font-semibold uppercase text-slate-600 dark:text-slate-400 tracking-wider">Pillar 04</span>
                   <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                    Deterministic Sliding-Window Chunker
+                    Pure Go PDF Engine & Smart Concept Boundaries
                   </h3>
                 </div>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Large textbooks cannot be comprehended in massive 80-page binges. StudyLoop deterministically slices your books into digestible ~2,500-word units with 200-word overlap.
+                  Fast, native parsing with zero Python runtime dependency in core ingestion, paired with on-device vector similarity to eliminate mid-sentence cliffhangers.
                 </p>
                 
                 <ul className="space-y-2 text-xs text-slate-700 dark:text-slate-300 font-medium">
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
-                    <span>200-word overlap preserves context across chapter boundaries.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0 mt-1.5" />
+                    <span><strong>Pure Go Native PDF Engine:</strong> Blazing-fast parsing using <code className="font-mono">ledongthuc/pdf</code> & <code className="font-mono">pdfcpu</code>—no Python runtime required for document ingestion.</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
-                    <span>100% offline text extraction via PyMuPDF (no cloud telemetry).</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0 mt-1.5" />
+                    <span><strong>No Cliffhangers (<code className="font-mono">sqlite-vec</code>):</strong> Detects ongoing thoughts across page boundaries so study sessions complete at natural conceptual stopping points.</span>
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0" />
-                    <span>Generates local ONNX embeddings for instant on-device search.</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0 mt-1.5" />
+                    <span><strong>Trust-Based Pacing:</strong> Always-available "Complete Session" button. No rigid word quotas or surveillance timers.</span>
                   </li>
                 </ul>
               </div>
@@ -315,23 +322,23 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
               {/* Chunker Visual Representation */}
               <div className="lg:col-span-6 rounded-2xl bg-slate-900 dark:bg-black/60 border border-slate-300 dark:border-white/10 p-5 font-mono text-xs space-y-3">
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[11px] text-slate-400">
-                  <span className="text-slate-200 font-semibold">SLIDING WINDOW CHUNKER</span>
-                  <span>Overlap: 200 Words</span>
+                  <span className="text-slate-200 font-semibold">SMART CONCEPT BOUNDARY DETECTION</span>
+                  <span className="text-sky-400">sqlite-vec Engine</span>
                 </div>
                 
                 <div className="space-y-2">
                   <div className="p-2.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-200">
-                    <div className="text-[10px] text-slate-400 uppercase font-bold">Chunk #14 (2,450 words)</div>
+                    <div className="text-[10px] text-slate-400 uppercase font-bold">Concept Unit #14 (Page 142-146)</div>
                     <div className="text-[11px] truncate mt-0.5">...Memory management units and TLB hardware translation caches...</div>
                   </div>
 
-                  <div className="p-2 rounded-md bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[10px] text-center font-bold">
-                    ▲ 200-Word Semantic Overlap Boundary ▲
+                  <div className="p-2 rounded-md bg-sky-500/20 border border-sky-500/40 text-sky-300 text-[10px] text-center font-bold">
+                    ✓ Natural Conceptual Boundary (Semantic Cohesion: 0.94) — No Cliffhangers
                   </div>
 
                   <div className="p-2.5 rounded-lg bg-slate-800/60 border border-slate-700 text-slate-300">
-                    <div className="text-[10px] text-slate-400 uppercase font-bold">Chunk #15 (2,520 words)</div>
-                    <div className="text-[11px] truncate mt-0.5">...translation caches handling multi-level page table traversals...</div>
+                    <div className="text-[10px] text-slate-400 uppercase font-bold">Concept Unit #15 (Page 147-151)</div>
+                    <div className="text-[11px] truncate mt-0.5">...Multi-level page tables and sparse virtual address handling...</div>
                   </div>
                 </div>
               </div>
@@ -345,3 +352,4 @@ Goal: Act as a rigorous tutor. Do not give the direct answer. Ask 2 targeted dia
     </section>
   );
 };
+

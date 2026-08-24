@@ -9,13 +9,14 @@ import {
   Volume2, 
   Layers, 
   Check, 
-  ArrowRight,
+  ArrowRight, 
   ExternalLink,
   Code2,
   FileVideo,
   Terminal,
   Clock,
-  BookOpenCheck
+  BookOpenCheck,
+  FileText
 } from 'lucide-react';
 
 export const ExtensionsHub: React.FC = () => {
@@ -30,7 +31,7 @@ export const ExtensionsHub: React.FC = () => {
       tier: 'Pro',
       icon: Youtube,
       color: 'text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20',
-      shortDesc: 'Transcribes & chunks lectures into timestamped reading chunks with quizzes.'
+      shortDesc: 'Transcribes & chunks video lectures into timestamped reading chunks with synchronized video jumping & validation quizzes.'
     },
     {
       id: 'audio',
@@ -38,23 +39,23 @@ export const ExtensionsHub: React.FC = () => {
       tier: 'Pro',
       icon: Headphones,
       color: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
-      shortDesc: 'Two-host podcast briefings streamed on-device (requires Python).'
+      shortDesc: 'Generates two-host podcast briefings streamed on-device using Microsoft Edge TTS for auditory learners handling dense chapters.'
     },
     {
       id: 'simplify',
-      name: 'Reader "Simplify" Tool',
-      tier: 'Pro',
+      name: 'AI Text Simplifier',
+      tier: 'Free',
       icon: Sparkles,
-      color: 'text-slate-700 dark:text-slate-300 bg-slate-200 dark:bg-slate-800 border-slate-300 dark:border-slate-700',
-      shortDesc: '1-click refactoring of dense academic proofs into clear conceptual models.'
+      color: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
+      shortDesc: '1-click refactoring of dense academic proofs, math, and jargon into clear structured Markdown notes inside the Reader.'
     },
     {
       id: 'future',
       name: 'Vault & MarkItDown Importers',
       tier: 'Pro',
       icon: FolderArchive,
-      color: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-      shortDesc: 'Notion/Obsidian vault sync, folder-as-book parser, and new importers for 12 months.'
+      color: 'text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20',
+      shortDesc: 'Notion/Obsidian vault sync, folder-as-book parser, and all new importers released for 12 months.'
     }
   ];
 
@@ -68,10 +69,10 @@ export const ExtensionsHub: React.FC = () => {
             Extensible Cognitive Power
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
-            Pro Extensions Seamlessly Feed Your Queue
+            Extensions That Seamlessly Feed Your Queue
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Enhance your workflow with multi-modal lecture ingestion, conversational audio overviews, and proof explainers without leaving your local setup.
+            Enhance your study workflow with multi-modal video lecture ingestion, on-device conversational audio briefings, and free 1-click proof simplifiers.
           </p>
         </div>
 
@@ -94,7 +95,11 @@ export const ExtensionsHub: React.FC = () => {
                     <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${ext.color}`}>
                       <ext.icon className="w-4 h-4" />
                     </div>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                    <span className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase ${
+                      ext.tier === 'Free' 
+                        ? 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700'
+                    }`}>
                       {ext.tier}
                     </span>
                   </div>
@@ -124,22 +129,22 @@ export const ExtensionsHub: React.FC = () => {
               <div className="lg:col-span-6 space-y-4">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-mono">
                   <Youtube className="w-3.5 h-3.5" />
-                  <span>Extension: Video Lecture Parser</span>
+                  <span>Pro Extension: Video Lecture Parser</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                  Turn 2-Hour Video Lectures into Structured Study Chunks
+                  Turn Video Lectures into Structured, Timestamped Study Chunks
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Paste any educational YouTube URL. StudyLoop downloads subtitles, slices the transcript into ~2,500-word study blocks, and generates validation quizzes.
+                  Paste any educational YouTube URL. StudyLoop transcribes and chunks video lectures into timestamped reading chunks with synchronized video jumping and validation quizzes.
                 </p>
                 <div className="space-y-2 text-xs font-mono text-slate-700 dark:text-slate-300">
                   <div className="flex items-center gap-2">
                     <Check className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
-                    <span>Synchronized player jumping to exact conceptual timestamps</span>
+                    <span>Synchronized video jumping to exact conceptual lecture timestamps</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Check className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />
-                    <span>Integrates directly into your 8-tier priority study queue</span>
+                    <span>Integrates directly into your 8-tier priority study queue with quizzes</span>
                   </div>
                 </div>
               </div>
@@ -159,15 +164,15 @@ export const ExtensionsHub: React.FC = () => {
                     <div className="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center mx-auto shadow-md group-hover:scale-110 transition-transform">
                       <Play className="w-5 h-5 fill-current ml-0.5" />
                     </div>
-                    <span className="text-[11px] font-sans text-slate-200">Interactive Video Chunker</span>
+                    <span className="text-[11px] font-sans text-slate-200">Interactive Synchronized Lecture Chunker</span>
                   </div>
                   <div className="absolute bottom-2 left-3 right-3 flex items-center justify-between text-[10px] text-slate-300">
                     <span>Timestamp: 18:42</span>
-                    <span className="text-rose-400">Chunk #2 / 4 Active</span>
+                    <span className="text-rose-400">Concept Unit #2 Active</span>
                   </div>
                 </div>
                 <div className="p-2.5 rounded-lg bg-white/[0.03] border border-white/5 text-[11px] text-slate-400">
-                  ⚡ Auto-extracted 4 study chunks with 12 validation quiz questions.
+                  ⚡ Auto-extracted 4 concept-aware units with timestamped validation quizzes.
                 </div>
               </div>
             </div>
@@ -179,22 +184,22 @@ export const ExtensionsHub: React.FC = () => {
               <div className="lg:col-span-6 space-y-4">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 text-xs font-mono">
                   <Headphones className="w-3.5 h-3.5" />
-                  <span>Extension: Conversational Podcast Briefing</span>
+                  <span>Pro Extension: Two-Host Audio Briefings</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                  Two-Host Audio Briefings Generated on Your Local Machine
+                  Two-Host Podcast Briefings Streamed On-Device
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Transform dense textbook chapters into engaging conversational podcast overviews. Uses Edge-TTS neural voices directly on your hardware with zero audio API charges.
+                  Generates two-host podcast briefings streamed on-device using Microsoft Edge TTS for auditory learners handling dense textbook chapters. 100% local audio generation with zero external audio API fees.
                 </p>
 
-                {/* Transparent Python Dependency Badge */}
+                {/* Python Dependency Info */}
                 <div className="p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-800 dark:text-amber-300 text-xs flex items-start gap-2.5">
                   <Terminal className="w-4 h-4 shrink-0 mt-0.5 text-amber-600 dark:text-amber-400" />
                   <div>
-                    <span className="font-bold">Transparent Dependency:</span>
+                    <span className="font-bold">Local Streaming Runtime:</span>
                     <p className="text-[11px] mt-0.5 text-amber-700 dark:text-amber-200 font-sans">
-                      Edge-TTS streaming runs locally and requires Python 3.10+ installed on your local Windows system.
+                      Edge-TTS streaming runs locally on your Windows machine (requires Python 3.10+ installed for the audio sidecar).
                     </p>
                   </div>
                 </div>
@@ -207,14 +212,14 @@ export const ExtensionsHub: React.FC = () => {
                     <Volume2 className="w-3.5 h-3.5" />
                     Deep Briefing: Two-Host Neural Audio
                   </span>
-                  <span className="text-emerald-400">Edge-TTS Active</span>
+                  <span className="text-emerald-400">Edge-TTS Stream</span>
                 </div>
 
                 <div className="p-4 rounded-xl bg-slate-950 border border-white/10 space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <h5 className="font-sans font-semibold text-white text-xs">Chapter 14: Virtual Memory Deep-Dive</h5>
-                      <span className="text-[10px] text-slate-400">Host A (Concept) & Host B (Critique)</span>
+                      <span className="text-[10px] text-slate-400">Host A (Concept Guide) & Host B (Devil's Advocate)</span>
                     </div>
                     <button
                       onClick={() => setIsPlayingAudio(!isPlayingAudio)}
@@ -246,19 +251,19 @@ export const ExtensionsHub: React.FC = () => {
             </div>
           )}
 
-          {/* 3. Simplify Tool Tab */}
+          {/* 3. Simplify Tool Tab (Free Community Extension) */}
           {activeTab === 'simplify' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-5 space-y-4">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700 text-xs font-mono">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-xs font-mono">
                   <Sparkles className="w-3.5 h-3.5" />
-                  <span>Extension: Reader "Simplify" Tool</span>
+                  <span>Free Extension: AI Text Simplifier</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                  1-Click Mathematical Proof & Code Clarifier
+                  1-Click Refactoring of Dense Proofs & Jargon
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Hit a brick wall on dense notation? Click "Simplify" inside the chunk reader to translate opaque notation into intuitive conceptual analogies.
+                  Refactor dense academic proofs, dense math, and cryptic jargon into clear, structured Markdown notes directly inside the Reader without manual copy-pasting. Free for all users.
                 </p>
 
                 <div className="flex gap-2 pt-2">
@@ -270,7 +275,7 @@ export const ExtensionsHub: React.FC = () => {
                         : 'border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400'
                     }`}
                   >
-                    Original Notation
+                    Original Dense Excerpt
                   </button>
                   <button
                     onClick={() => setSimplifyMode('simplified')}
@@ -280,7 +285,7 @@ export const ExtensionsHub: React.FC = () => {
                         : 'border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400'
                     }`}
                   >
-                    ✨ Simplified Model
+                    ✨ Structured Markdown Note
                   </button>
                 </div>
               </div>
@@ -289,7 +294,7 @@ export const ExtensionsHub: React.FC = () => {
               <div className="lg:col-span-7 rounded-2xl bg-slate-900 dark:bg-black/60 border border-slate-300 dark:border-white/10 p-5 font-mono text-xs space-y-3">
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[11px]">
                   <span className="text-slate-200 font-semibold">
-                    {simplifyMode === 'original' ? 'ORIGINAL ACADEMIC EXCERPT' : 'SIMPLIFIED CONCEPTUAL TRANSLATION'}
+                    {simplifyMode === 'original' ? 'ORIGINAL ACADEMIC EXCERPT' : 'READER STRUCTURED MARKDOWN NOTE'}
                   </span>
                   <span className="text-slate-500">OSTEP §14.4</span>
                 </div>
@@ -302,11 +307,16 @@ export const ExtensionsHub: React.FC = () => {
                     <span className="text-[10px] text-amber-400 block font-mono">Dense formal notation. High friction.</span>
                   </div>
                 ) : (
-                  <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 text-xs leading-relaxed space-y-2">
-                    <p>
-                      <strong>Plain English Intuition:</strong> Think of a 1,000-page encyclopedia. Instead of printing all 1,000 pages when most chapters are empty, you print a 1-page Table of Contents. If a chapter doesn't exist, you never waste paper printing its pages.
-                    </p>
-                    <span className="text-[10px] text-emerald-400 block font-mono">✓ High retention intuition. Preserves exact semantics.</span>
+                  <div className="p-4 rounded-xl bg-slate-950 border border-emerald-500/20 text-slate-200 text-xs leading-relaxed space-y-2">
+                    <div className="text-emerald-400 font-bold font-sans text-sm mb-1">
+                      ### Two-Tier Paging Intuition
+                    </div>
+                    <ul className="space-y-1.5 list-disc list-inside text-slate-300 font-sans text-xs">
+                      <li><strong>The Problem:</strong> Flat page tables waste megabytes allocating slots for unused memory.</li>
+                      <li><strong>The Hierarchy:</strong> A single 1-page Directory acts as a Table of Contents.</li>
+                      <li><strong>Lazy Allocation:</strong> If an entire 4MB memory region is empty, its leaf page table is never allocated in RAM.</li>
+                    </ul>
+                    <span className="text-[10px] text-emerald-400 block font-mono mt-2">✓ Structured Markdown generated directly inside Reader. Zero copy-pasting.</span>
                   </div>
                 )}
               </div>
@@ -317,9 +327,9 @@ export const ExtensionsHub: React.FC = () => {
           {activeTab === 'future' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-6 space-y-4">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-xs font-mono">
                   <FolderArchive className="w-3.5 h-3.5" />
-                  <span>Extension: 12-Month Importers Pass</span>
+                  <span>Pro Extension: 12-Month Importers Pass</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
                   Continuous Upgrades & Knowledge Vault Importers
@@ -346,12 +356,12 @@ export const ExtensionsHub: React.FC = () => {
               {/* Roadmap Timeline */}
               <div className="lg:col-span-6 rounded-2xl bg-slate-900 dark:bg-black/60 border border-slate-300 dark:border-white/10 p-5 font-mono text-xs text-slate-300 space-y-3">
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[11px]">
-                  <span className="text-emerald-400 font-semibold">12-MONTH PRO UPGRADE ROADMAP</span>
+                  <span className="text-purple-400 font-semibold">12-MONTH PRO UPGRADE ROADMAP</span>
                   <span className="text-slate-500">No Recurring Billing</span>
                 </div>
                 <div className="space-y-2.5 text-xs">
-                  <div className="flex items-center justify-between p-2 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-300">
-                    <span>Q1: YouTube & Audio Overview Engine</span>
+                  <div className="flex items-center justify-between p-2 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300">
+                    <span>Q1: YouTube Ingestion & Edge-TTS Audio Engine</span>
                     <span className="text-[10px] font-bold">RELEASED</span>
                   </div>
                   <div className="flex items-center justify-between p-2 rounded bg-white/[0.03] border border-white/5 text-slate-300">
@@ -373,3 +383,4 @@ export const ExtensionsHub: React.FC = () => {
     </section>
   );
 };
+

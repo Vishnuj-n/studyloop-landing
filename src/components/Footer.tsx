@@ -64,7 +64,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenDownload }) => {
               </li>
               <li><span className="text-slate-500">ONNX Runtime</span></li>
               <li><span className="text-slate-500">FSRS-4 Scheduler</span></li>
-              <li><span className="text-slate-500">PyMuPDF Chunker</span></li>
+              <li><span className="text-slate-500">Pure Go PDF Engine (ledongthuc/pdf)</span></li>
+              <li><span className="text-slate-500">sqlite-vec Engine</span></li>
               <li><span className="text-slate-500">Microsoft Edge TTS</span></li>
             </ul>
           </div>

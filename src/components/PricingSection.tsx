@@ -6,10 +6,10 @@ import {
   Sparkles, 
   ShieldCheck, 
   Zap, 
-  RotateCcw,
-  CheckCircle2,
-  Terminal,
-  ExternalLink,
+  RotateCcw, 
+  CheckCircle2, 
+  Terminal, 
+  ExternalLink, 
   Laptop
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -40,19 +40,21 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
   };
 
   const comparisonRows = [
-    { feature: 'Deterministic 8-Tier Study Queue', free: true, pro: true },
-    { feature: 'Local PDF & Markdown 2,500w Chunking', free: true, pro: true },
-    { feature: 'On-Device ONNX Vector Search Engine', free: true, pro: true },
-    { feature: 'Synchronous Comprehension Quizzes', free: true, pro: true },
-    { feature: 'FSRS-4 Spaced Repetition Flashcards', free: true, pro: true },
-    { feature: '2-Strike Socratic Concept Rescue System', free: true, pro: true },
-    { feature: 'Milestone Aggregate Exams (Every 10 Quizzes)', free: true, pro: true },
+    { feature: 'Deterministic 8-Tier Cognitive Study Queue', free: true, pro: true },
+    { feature: 'Pure Go Native PDF Engine (Zero Python Runtime Dependency)', free: true, pro: true },
+    { feature: 'Trust-Based Reading (User-Paced, No Surveillance Timers)', free: true, pro: true },
+    { feature: 'Smart Concept-Aware Reading Boundaries (sqlite-vec, No Cliffhangers)', free: true, pro: true },
+    { feature: 'Synchronous Active Comprehension Quizzes', free: true, pro: true },
+    { feature: 'FSRS-4 Spaced Repetition Engine (Decoupled & Batched)', free: true, pro: true },
+    { feature: 'Dual-Track Socratic Rescue (In-App + Prompt Export)', free: true, pro: true },
+    { feature: 'Graceful Queue Unblocking (external_help_required Flag)', free: true, pro: true },
+    { feature: 'Deterministic Milestone Exams (10-Quiz Question Pooling, 0 Token Cost)', free: true, pro: true },
     { feature: 'Examiner Written Assessment Rubric Mode', free: true, pro: true },
-    { feature: 'BYOK (Gemini Free, OpenAI, Ollama, Groq)', free: true, pro: true },
-    { feature: 'YouTube Lecture Ingestion & Video Queue', free: false, pro: true, highlight: true },
-    { feature: 'Edge TTS Conversational Audio Briefings', free: false, pro: true, highlight: true },
-    { feature: 'Reader AI Simplify Proof Clarifier', free: false, pro: true, highlight: true },
-    { feature: '12-Month Access to Future Importers (Vaults)', free: false, pro: true, highlight: true },
+    { feature: 'AI Text Simplifier (Proofs & Jargon into Structured Markdown)', free: true, pro: true },
+    { feature: 'Full BYOK Support (Gemini Free, Groq, Ollama, OpenAI)', free: true, pro: true },
+    { feature: 'YouTube Lecture Ingestion & Synchronized Video Queue', free: false, pro: true, highlight: true },
+    { feature: 'Edge-TTS On-Device Two-Host Conversational Audio Briefings', free: false, pro: true, highlight: true },
+    { feature: '12-Month Access to Future Importers (Vaults & MarkItDown)', free: false, pro: true, highlight: true },
     { feature: 'Desktop Loopback 1-Click License Activation', free: false, pro: true, highlight: true },
   ];
 
@@ -94,7 +96,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                   <span className="text-sm font-mono text-slate-500">/ forever</span>
                 </div>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                  For students and self-directed learners who want complete local control over their textbooks.
+                  For students and sovereign learners who want complete local control over their textbooks.
                 </p>
               </div>
 
@@ -105,15 +107,23 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Local PDF & Markdown 2,500w Chunk Reader</span>
+                  <span>Pure Go Native PDF Engine (Zero Python Runtime)</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>On-Device ONNX Vector Search & RAG</span>
+                  <span>Trust-Based, User-Paced Reading (No Surveillance)</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Synchronous Comprehension Quizzes</span>
+                  <span>Smart Concept Boundaries via <code className="font-mono text-xs">sqlite-vec</code></span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Dual-Track Socratic Rescue & Graceful Unblocking</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Deterministic Milestone Exams (10-Quiz Question Pooling)</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -121,15 +131,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>2-Strike Socratic Concept Rescue</span>
+                  <span>AI Text Simplifier (Academic Proofs into Markdown)</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Milestone Aggregate Exams & Examiner Mode</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Full BYOK support (Gemini Free, Groq, Ollama)</span>
+                  <span>Full BYOK support (Gemini Free, Groq, Ollama, OpenAI)</span>
                 </div>
               </div>
             </div>
@@ -176,15 +182,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>YouTube Lecture Ingestion & Video Queue</span>
+                  <span>YouTube Lecture Ingestion & Synchronized Video Queue</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Edge TTS Conversational Audio Briefing Player</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Reader AI "Simplify" Proof Clarifier</span>
+                  <span>Edge-TTS On-Device Two-Host Podcast Audio Briefings</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -299,3 +301,4 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
     </section>
   );
 };
+
