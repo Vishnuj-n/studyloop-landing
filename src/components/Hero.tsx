@@ -28,7 +28,15 @@ import {
   Pencil,
   Flame,
   Clock,
-  ExternalLink
+  ExternalLink,
+  Send,
+  ArrowRight,
+  Brain,
+  Headphones,
+  Video,
+  BookOpenCheck,
+  Volume2,
+  ChevronDown
 } from 'lucide-react';
 
 interface HeroProps {
@@ -36,7 +44,7 @@ interface HeroProps {
   onExplorePro: () => void;
 }
 
-type AppTab = 'dashboard' | 'reader' | 'notebooks' | 'quiz';
+type AppTab = 'dashboard' | 'reader' | 'notebooks' | 'quiz' | 'flashcards' | 'tutor' | 'extensions';
 
 export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
   const [activeTab, setActiveTab] = useState<AppTab>('dashboard');
@@ -48,6 +56,47 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
     3: 1
   });
   const [quizSubmitted, setQuizSubmitted] = useState(false);
+
+  // Flashcards state
+  const [flashcardIndex, setFlashcardIndex] = useState(0);
+  const [showFlashcardAnswer, setShowFlashcardAnswer] = useState(false);
+  const flashcards = [
+    {
+      q: "What is a mutex in Go and how does it ensure mutual exclusion?",
+      a: "A sync.Mutex provides exclusive locking so that only one goroutine can access a critical section or shared memory at a time, preventing race conditions via Lock() and Unlock()."
+    },
+    {
+      q: "How does goroutine scheduling differ from OS thread scheduling in Go?",
+      a: "Goroutines are multiplexed onto OS threads via the Go runtime M:N scheduler (work stealing), requiring only ~2KB of initial stack compared to ~1-8MB for OS threads."
+    },
+    {
+      q: "What is the role of channels in Go's CSP concurrency model?",
+      a: "Channels provide typed conduits through which goroutines synchronize execution and communicate values without explicit locks: 'Do not communicate by sharing memory; instead, share memory by communicating.'"
+    },
+    {
+      q: "When should you use sync.RWMutex over a standard sync.Mutex?",
+      a: "Use sync.RWMutex when read operations significantly outnumber write operations, allowing concurrent readers (RLock) while retaining exclusive locks for writers."
+    },
+    {
+      q: "What causes a goroutine leak in Go applications?",
+      a: "Goroutine leaks occur when a goroutine is launched but blocked indefinitely on a channel receive/send or unclosed resource, preventing the garbage collector from reclaiming its memory."
+    }
+  ];
+
+  // Socratic Tutor state
+  const [socraticActive, setSocraticActive] = useState(false);
+  const [socraticInput, setSocraticInput] = useState('');
+  const [socraticMessages, setSocraticMessages] = useState<Array<{ sender: 'user' | 'tutor'; text: string }>>([
+    {
+      sender: 'tutor',
+      text: "Welcome to Guided Socratic Thinking. Before we write mutex lock code, what happens if two goroutines write to the exact same map concurrently without synchronization?"
+    }
+  ]);
+
+  // Extensions Hub toggle states
+  const [extSimplifierEnabled, setExtSimplifierEnabled] = useState(true);
+  const [extAudioEnabled, setExtAudioEnabled] = useState(false);
+  const [extYoutubeEnabled, setExtYoutubeEnabled] = useState(false);
 
   const trustBadges = [
     { label: '100% Local Privacy (ONNX Embeddings)', icon: Database },
@@ -145,12 +194,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
             </div>
             
             {/* Quick Screen Switcher Tabs in Header */}
-            <div className="flex items-center bg-[#131d17] rounded-lg p-0.5 border border-[#1f3126]">
-              {(['dashboard', 'reader', 'notebooks', 'quiz'] as AppTab[]).map((tab) => (
+            <div className="flex items-center bg-[#131d17] rounded-lg p-0.5 border border-[#1f3126] overflow-x-auto max-w-[420px] scrollbar-none">
+              {(['dashboard', 'reader', 'notebooks', 'quiz', 'flashcards', 'tutor', 'extensions'] as AppTab[]).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-3 py-1 rounded-md text-[11px] font-medium capitalize transition-all ${
+                  className={`px-2.5 py-1 rounded-md text-[11px] font-medium capitalize transition-all whitespace-nowrap ${
                     activeTab === tab
                       ? 'bg-[#1e3025] text-emerald-300 font-semibold shadow-xs'
                       : 'text-slate-400 hover:text-slate-200'
@@ -229,25 +278,49 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
                     <span>Quiz</span>
                   </button>
 
-                  <div className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-slate-400 opacity-60 cursor-default">
+                  <button
+                    onClick={() => {
+                      setActiveTab('flashcards');
+                      setShowFlashcardAnswer(false);
+                    }}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                      activeTab === 'flashcards'
+                        ? 'bg-[#15231c] text-emerald-400 font-semibold shadow-xs'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-[#121a15]'
+                    }`}
+                  >
                     <Layers className="w-3.5 h-3.5 shrink-0" />
                     <span>Flashcards</span>
-                  </div>
+                  </button>
 
-                  <div className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-slate-400 opacity-60 cursor-default">
+                  <div className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-slate-500 opacity-60 cursor-default">
                     <PenTool className="w-3.5 h-3.5 shrink-0" />
                     <span>Examiner</span>
                   </div>
 
-                  <div className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-slate-400 opacity-60 cursor-default">
+                  <button
+                    onClick={() => setActiveTab('tutor')}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                      activeTab === 'tutor'
+                        ? 'bg-[#15231c] text-emerald-400 font-semibold shadow-xs'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-[#121a15]'
+                    }`}
+                  >
                     <Bot className="w-3.5 h-3.5 shrink-0" />
                     <span>Tutor</span>
-                  </div>
+                  </button>
 
-                  <div className="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs text-slate-400 opacity-60 cursor-default">
+                  <button
+                    onClick={() => setActiveTab('extensions')}
+                    className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                      activeTab === 'extensions'
+                        ? 'bg-[#15231c] text-emerald-400 font-semibold shadow-xs'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-[#121a15]'
+                    }`}
+                  >
                     <Boxes className="w-3.5 h-3.5 shrink-0" />
                     <span>Extensions</span>
-                  </div>
+                  </button>
                 </nav>
 
               </div>
@@ -752,6 +825,442 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
                       </div>
                     </div>
 
+                  </div>
+
+                </div>
+              )}
+
+              {/* ========================================================= */}
+              {/* 5. FLASHCARDS SCREEN (Matches user's Flashcard screenshot) */}
+              {/* ========================================================= */}
+              {activeTab === 'flashcards' && (
+                <div className="space-y-4 animate-fade-in">
+                  
+                  {/* Top Flashcard Bar */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#18261e] pb-3">
+                    <div>
+                      <span className="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-semibold">
+                        RETENTION
+                      </span>
+                      <h2 className="text-2xl font-bold text-white tracking-tight">Flashcards</h2>
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                      <div className="text-right">
+                        <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">NOTEBOOK</span>
+                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#111a15] border border-[#1d2d23] text-xs text-slate-200 cursor-pointer">
+                          <span>Go Programming – Golang</span>
+                          <ChevronDown className="w-3 h-3 text-slate-400" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Flashcard Progress & Mode Indicator */}
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-slate-400">
+                      Card {flashcardIndex + 1} of {flashcards.length}
+                    </span>
+                    <span className="px-2 py-0.5 rounded-full bg-[#18261e] text-emerald-400 text-[10px] uppercase font-semibold border border-emerald-500/20">
+                      PRACTICE MODE
+                    </span>
+                  </div>
+
+                  {/* Progress Line */}
+                  <div className="w-full h-1 bg-[#15231c] rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-emerald-500 transition-all duration-300 rounded-full"
+                      style={{ width: `${((flashcardIndex + 1) / flashcards.length) * 100}%` }}
+                    />
+                  </div>
+
+                  {/* Flashcard Stage */}
+                  <div className="relative min-h-[250px] sm:min-h-[280px] rounded-2xl bg-[#090d0b] border border-[#18261e] p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-inner">
+                    
+                    <div className="max-w-md space-y-4 my-auto">
+                      <p className="text-sm sm:text-base font-medium text-slate-100 leading-relaxed">
+                        {flashcards[flashcardIndex].q}
+                      </p>
+
+                      {showFlashcardAnswer && (
+                        <div className="p-4 rounded-xl bg-[#111a15] border border-emerald-500/30 text-xs text-slate-200 leading-relaxed text-left animate-fade-in space-y-2">
+                          <span className="text-[10px] font-mono uppercase text-emerald-400 font-bold block">
+                            Key Answer & Concept:
+                          </span>
+                          <p>{flashcards[flashcardIndex].a}</p>
+                        </div>
+                      )}
+
+                      <div>
+                        {!showFlashcardAnswer ? (
+                          <button
+                            onClick={() => setShowFlashcardAnswer(true)}
+                            className="px-6 py-2.5 rounded-xl bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs transition-all shadow-md active:scale-95"
+                          >
+                            Show Answer
+                          </button>
+                        ) : (
+                          <div className="flex items-center justify-center gap-2 pt-2">
+                            <button
+                              onClick={() => {
+                                setShowFlashcardAnswer(false);
+                                setFlashcardIndex((prev) => (prev + 1) % flashcards.length);
+                              }}
+                              className="px-4 py-2 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 text-xs font-mono transition-colors"
+                            >
+                              Hard (1d)
+                            </button>
+                            <button
+                              onClick={() => {
+                                setShowFlashcardAnswer(false);
+                                setFlashcardIndex((prev) => (prev + 1) % flashcards.length);
+                              }}
+                              className="px-4 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 text-amber-300 text-xs font-mono transition-colors"
+                            >
+                              Good (3d)
+                            </button>
+                            <button
+                              onClick={() => {
+                                setShowFlashcardAnswer(false);
+                                setFlashcardIndex((prev) => (prev + 1) % flashcards.length);
+                              }}
+                              className="px-4 py-2 rounded-lg bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 text-xs font-bold transition-all shadow-sm"
+                            >
+                              Easy (7d) →
+                            </button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Pagination Dot/Counter at bottom */}
+                    <div className="absolute bottom-3 right-4 flex items-center gap-2 text-slate-500 text-[11px] font-mono">
+                      <span>Card {flashcardIndex + 1}/{flashcards.length}</span>
+                    </div>
+                  </div>
+
+                </div>
+              )}
+
+              {/* ========================================================= */}
+              {/* 6. SOCRATIC TUTOR SCREEN (Matches user's Tutor screenshot) */}
+              {/* ========================================================= */}
+              {activeTab === 'tutor' && (
+                <div className="space-y-4 animate-fade-in">
+                  
+                  {/* Socratic Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#18261e] pb-3">
+                    <div>
+                      <span className="text-[10px] font-mono tracking-widest text-emerald-400 uppercase font-semibold">
+                        TUTOR
+                      </span>
+                      <h2 className="text-2xl font-bold text-white tracking-tight">Guided Thinking</h2>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button 
+                        onClick={() => {
+                          setSocraticActive(false);
+                          setSocraticMessages([
+                            {
+                              sender: 'tutor',
+                              text: "Welcome to Guided Socratic Thinking. Before we write mutex lock code, what happens if two goroutines write to the exact same map concurrently without synchronization?"
+                            }
+                          ]);
+                        }}
+                        className="px-3 py-1 rounded-lg bg-[#16221b] hover:bg-[#1d2d23] text-slate-400 hover:text-slate-200 text-xs font-mono transition-colors flex items-center gap-1.5 border border-[#23372b]"
+                      >
+                        <Pencil className="w-3 h-3" />
+                        <span>Clear Chat</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Filters Bar */}
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#111a15] border border-[#1d2d23] text-slate-300">
+                      <Folder className="w-3 h-3 text-slate-400" />
+                      <span>Go Programming – Golang</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#111a15] border border-[#1d2d23] text-slate-300">
+                      <span className="w-2 h-2 rounded-full bg-rose-500" />
+                      <span>Entire book (No topic filter)</span>
+                    </div>
+                  </div>
+
+                  {/* Socratic Interactive Viewport */}
+                  <div className="min-h-[270px] rounded-2xl bg-[#090d0b] border border-[#18261e] p-4 flex flex-col justify-between relative">
+                    
+                    {!socraticActive ? (
+                      /* Centered Socratic Starter Box */
+                      <div className="my-auto max-w-sm mx-auto p-6 rounded-2xl bg-[#111a15] border border-[#1d2d23] text-center space-y-4 shadow-lg animate-fade-in">
+                        <div className="w-12 h-12 mx-auto rounded-full bg-gradient-to-tr from-pink-500/20 to-purple-500/20 text-pink-400 flex items-center justify-center border border-pink-500/30 text-2xl">
+                          🧠
+                        </div>
+                        <div>
+                          <h4 className="text-base font-bold text-white">Socratic Tutor</h4>
+                          <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                            Select a notebook and topic above, then start a guided session or type a specific question below to begin.
+                          </p>
+                        </div>
+                        <div className="p-2 rounded-lg bg-[#0a100d] border border-[#17241d] text-[11px] text-slate-400">
+                          Notebook: Go Programming (Golang Course)
+                        </div>
+                        <button
+                          onClick={() => setSocraticActive(true)}
+                          className="w-full py-2.5 rounded-xl bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
+                        >
+                          <Play className="w-3.5 h-3.5 fill-current" />
+                          <span>Start Socratic Session</span>
+                        </button>
+                      </div>
+                    ) : (
+                      /* Active Socratic Conversation Stream */
+                      <div className="space-y-3 max-h-[220px] overflow-y-auto pr-1">
+                        {socraticMessages.map((msg, idx) => (
+                          <div
+                            key={idx}
+                            className={`flex gap-2.5 text-xs ${
+                              msg.sender === 'user' ? 'justify-end' : 'justify-start'
+                            }`}
+                          >
+                            {msg.sender === 'tutor' && (
+                              <div className="w-6 h-6 rounded-full bg-pink-500/20 text-pink-400 border border-pink-500/30 flex items-center justify-center text-xs shrink-0 mt-0.5">
+                                🧠
+                              </div>
+                            )}
+                            <div
+                              className={`p-3 rounded-xl max-w-[85%] leading-relaxed ${
+                                msg.sender === 'user'
+                                  ? 'bg-[#22c55e] text-slate-950 font-medium'
+                                  : 'bg-[#111a15] border border-[#1d2d23] text-slate-200'
+                              }`}
+                            >
+                              {msg.text}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Bottom Prompt Input Bar */}
+                    <div className="mt-3 pt-2 border-t border-[#18261e] flex items-center gap-2">
+                      <input
+                        type="text"
+                        value={socraticInput}
+                        onChange={(e) => setSocraticInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && socraticInput.trim()) {
+                            setSocraticActive(true);
+                            setSocraticMessages(prev => [
+                              ...prev,
+                              { sender: 'user', text: socraticInput },
+                              { sender: 'tutor', text: "Great insight! That causes a fatal runtime crash (concurrent map read and map write). How would a sync.Mutex isolate that operation?" }
+                            ]);
+                            setSocraticInput('');
+                          }
+                        }}
+                        placeholder="Ask a grounded question about your material, and the tutor will guide you..."
+                        className="flex-1 px-3.5 py-2 rounded-xl bg-[#111a15] border border-[#1d2d23] text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-emerald-500/60"
+                      />
+                      <button
+                        onClick={() => {
+                          if (socraticInput.trim()) {
+                            setSocraticActive(true);
+                            setSocraticMessages(prev => [
+                              ...prev,
+                              { sender: 'user', text: socraticInput },
+                              { sender: 'tutor', text: "Great insight! That causes a fatal runtime crash (concurrent map read and map write). How would a sync.Mutex isolate that operation?" }
+                            ]);
+                            setSocraticInput('');
+                          }
+                        }}
+                        className="p-2 rounded-xl bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 transition-colors"
+                      >
+                        <Send className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+
+                  </div>
+
+                </div>
+              )}
+
+              {/* ========================================================= */}
+              {/* 7. EXTENSIONS HUB SCREEN (Matches user's Extensions screenshot) */}
+              {/* ========================================================= */}
+              {activeTab === 'extensions' && (
+                <div className="space-y-5 animate-fade-in">
+                  
+                  {/* Extensions Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#18261e] pb-3">
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-2xl font-bold text-white tracking-tight">Extensions Hub</h2>
+                      </div>
+                      <p className="text-xs text-slate-400 mt-0.5">Customize and extend your StudyLoop environment with local tools and integrations.</p>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded-md bg-[#16221b] text-slate-300 font-mono text-[10px] uppercase font-bold border border-[#23372b]">
+                        FREE PLAN
+                      </span>
+                      <button 
+                        onClick={onExplorePro}
+                        className="px-3.5 py-1 rounded-md bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs transition-colors"
+                      >
+                        Upgrade to Pro
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Free Extensions Section */}
+                  <div className="space-y-2.5">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Free Extensions</h3>
+                      <span className="px-2 py-0.2 rounded-full bg-[#16221b] text-slate-400 text-[10px] font-mono">1 available</span>
+                    </div>
+
+                    {/* AI Text Simplifier Card */}
+                    <div className="max-w-md p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-slate-300">
+                            <BookOpenCheck className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <span className="font-bold text-white text-xs">AI Text Simplifier</span>
+                              <span className="px-1.5 py-0.5 rounded bg-[#18261e] text-emerald-400 text-[9px] font-mono uppercase font-bold">FREE</span>
+                            </div>
+                            <span className="text-[10px] text-slate-500 font-mono">V1.0.0 • Reader</span>
+                          </div>
+                        </div>
+
+                        {/* Toggle switch */}
+                        <button
+                          onClick={() => setExtSimplifierEnabled(!extSimplifierEnabled)}
+                          className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
+                            extSimplifierEnabled ? 'bg-emerald-500' : 'bg-slate-700'
+                          }`}
+                        >
+                          <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                            extSimplifierEnabled ? 'translate-x-4' : 'translate-x-0'
+                          }`} />
+                        </button>
+                      </div>
+
+                      <p className="text-[11px] text-slate-400 leading-relaxed">
+                        Transforms dense textbook chapters and academic text into structured, crystal-clear Markdown notes using AI.
+                      </p>
+
+                      <button
+                        onClick={() => setActiveTab('reader')}
+                        className="w-full py-1.5 rounded-lg bg-[#16221b] hover:bg-[#1d2d23] text-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 border border-[#23372b] transition-colors"
+                      >
+                        <span>Open Simplifier</span>
+                        <ArrowRight className="w-3 h-3 text-slate-400" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Pro Extensions Section */}
+                  <div className="space-y-2.5 pt-2">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono flex items-center gap-1.5">
+                        <span>Pro Extensions</span>
+                        <span>👑</span>
+                      </h3>
+                      <span className="px-2 py-0.2 rounded-full bg-[#16221b] text-slate-400 text-[10px] font-mono">2 pro tools</span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                      
+                      {/* Audio Overview Card */}
+                      <div className="p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3 flex flex-col justify-between">
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-sky-400">
+                                <Headphones className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="font-bold text-white text-xs">AI Audio Overview</span>
+                                  <span className="px-1.5 py-0.2 rounded bg-sky-500/10 text-sky-400 text-[9px] font-mono uppercase font-bold border border-sky-500/20">PRO</span>
+                                </div>
+                                <span className="text-[10px] text-slate-500 font-mono">V1.0.0 • Audio</span>
+                              </div>
+                            </div>
+
+                            <button
+                              onClick={() => setExtAudioEnabled(!extAudioEnabled)}
+                              className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
+                                extAudioEnabled ? 'bg-emerald-500' : 'bg-slate-700'
+                              }`}
+                            >
+                              <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                                extAudioEnabled ? 'translate-x-4' : 'translate-x-0'
+                              }`} />
+                            </button>
+                          </div>
+
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            Generate dynamic conversational podcast-style audio summaries of reading topics using Edge TTS.
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={onExplorePro}
+                          className="w-full py-1.5 rounded-lg bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs transition-colors shadow-sm mt-2"
+                        >
+                          Unlock with Pro
+                        </button>
+                      </div>
+
+                      {/* YouTube Ingestion Card */}
+                      <div className="p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3 flex flex-col justify-between">
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-rose-400">
+                                <Video className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="font-bold text-white text-xs truncate max-w-[120px]">YouTube Ingestion & ...</span>
+                                  <span className="px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-400 text-[9px] font-mono uppercase font-bold border border-rose-500/20">PRO</span>
+                                </div>
+                                <span className="text-[10px] text-slate-500 font-mono">V0.1.0 • Ingestion</span>
+                              </div>
+                            </div>
+
+                            <button
+                              onClick={() => setExtYoutubeEnabled(!extYoutubeEnabled)}
+                              className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
+                                extYoutubeEnabled ? 'bg-emerald-500' : 'bg-slate-700'
+                              }`}
+                            >
+                              <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                                extYoutubeEnabled ? 'translate-x-4' : 'translate-x-0'
+                              }`} />
+                            </button>
+                          </div>
+
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            Ingest YouTube video lectures, extract timestamped transcripts with chapters, and study with embedded video player and quizzes.
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={onExplorePro}
+                          className="w-full py-1.5 rounded-lg bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs transition-colors shadow-sm mt-2"
+                        >
+                          Unlock with Pro
+                        </button>
+                      </div>
+
+                    </div>
                   </div>
 
                 </div>
