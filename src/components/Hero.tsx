@@ -1207,49 +1207,94 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
                   <div className="space-y-2.5">
                     <div className="flex items-center gap-2">
                       <h3 className="text-xs font-bold text-white uppercase tracking-wider font-mono">Free Extensions</h3>
-                      <span className="px-2 py-0.2 rounded-full bg-[#16221b] text-slate-400 text-[10px] font-mono">1 available</span>
+                      <span className="px-2 py-0.2 rounded-full bg-[#16221b] text-slate-400 text-[10px] font-mono">2 available</span>
                     </div>
 
-                    {/* AI Text Simplifier Card */}
-                    <div className="max-w-md p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-slate-300">
-                            <BookOpenCheck className="w-4 h-4" />
-                          </div>
-                          <div>
-                            <div className="flex items-center gap-2">
-                              <span className="font-bold text-white text-xs">AI Text Simplifier</span>
-                              <span className="px-1.5 py-0.5 rounded bg-[#18261e] text-emerald-400 text-[9px] font-mono uppercase font-bold">FREE</span>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                      {/* AI Text Simplifier Card */}
+                      <div className="p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2.5">
+                            <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-slate-300">
+                              <BookOpenCheck className="w-4 h-4" />
                             </div>
-                            <span className="text-[10px] text-slate-500 font-mono">V1.0.0 • Reader</span>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-white text-xs">AI Text Simplifier</span>
+                                <span className="px-1.5 py-0.5 rounded bg-[#18261e] text-emerald-400 text-[9px] font-mono uppercase font-bold">FREE</span>
+                              </div>
+                              <span className="text-[10px] text-slate-500 font-mono">V1.0.0 • Reader</span>
+                            </div>
                           </div>
+
+                          {/* Toggle switch */}
+                          <button
+                            onClick={() => setExtSimplifierEnabled(!extSimplifierEnabled)}
+                            className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
+                              extSimplifierEnabled ? 'bg-emerald-500' : 'bg-slate-700'
+                            }`}
+                          >
+                            <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                              extSimplifierEnabled ? 'translate-x-4' : 'translate-x-0'
+                            }`} />
+                          </button>
                         </div>
 
-                        {/* Toggle switch */}
+                        <p className="text-[11px] text-slate-400 leading-relaxed">
+                          Transforms dense textbook chapters and academic text into structured, crystal-clear Markdown notes using AI.
+                        </p>
+
                         <button
-                          onClick={() => setExtSimplifierEnabled(!extSimplifierEnabled)}
-                          className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
-                            extSimplifierEnabled ? 'bg-emerald-500' : 'bg-slate-700'
-                          }`}
+                          onClick={() => setActiveTab('reader')}
+                          className="w-full py-1.5 rounded-lg bg-[#16221b] hover:bg-[#1d2d23] text-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 border border-[#23372b] transition-colors"
                         >
-                          <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
-                            extSimplifierEnabled ? 'translate-x-4' : 'translate-x-0'
-                          }`} />
+                          <span>Open Simplifier</span>
+                          <ArrowRight className="w-3 h-3 text-slate-400" />
                         </button>
                       </div>
 
-                      <p className="text-[11px] text-slate-400 leading-relaxed">
-                        Transforms dense textbook chapters and academic text into structured, crystal-clear Markdown notes using AI.
-                      </p>
+                      {/* YouTube Ingestion Card */}
+                      <div className="p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3 flex flex-col justify-between">
+                        <div className="space-y-2.5">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2.5">
+                              <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-rose-400">
+                                <Video className="w-4 h-4" />
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <span className="font-bold text-white text-xs truncate max-w-[120px]">YouTube Ingestion</span>
+                                  <span className="px-1.5 py-0.5 rounded bg-[#18261e] text-emerald-400 text-[9px] font-mono uppercase font-bold">FREE</span>
+                                </div>
+                                <span className="text-[10px] text-slate-500 font-mono">V1.0.0 • Ingestion</span>
+                              </div>
+                            </div>
 
-                      <button
-                        onClick={() => setActiveTab('reader')}
-                        className="w-full py-1.5 rounded-lg bg-[#16221b] hover:bg-[#1d2d23] text-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 border border-[#23372b] transition-colors"
-                      >
-                        <span>Open Simplifier</span>
-                        <ArrowRight className="w-3 h-3 text-slate-400" />
-                      </button>
+                            <button
+                              onClick={() => setExtYoutubeEnabled(!extYoutubeEnabled)}
+                              className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
+                                extYoutubeEnabled ? 'bg-emerald-500' : 'bg-slate-700'
+                              }`}
+                            >
+                              <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
+                                extYoutubeEnabled ? 'translate-x-4' : 'translate-x-0'
+                              }`} />
+                            </button>
+                          </div>
+
+                          <p className="text-[11px] text-slate-400 leading-relaxed">
+                            Ingest YouTube video lectures, extract timestamped transcripts with chapters, and study with embedded video player and quizzes.
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={() => setActiveTab('reader')}
+                          className="w-full py-1.5 rounded-lg bg-[#16221b] hover:bg-[#1d2d23] text-slate-200 text-xs font-medium flex items-center justify-center gap-1.5 border border-[#23372b] transition-colors"
+                        >
+                          <span>Explore in Reader</span>
+                          <ArrowRight className="w-3 h-3 text-slate-400" />
+                        </button>
+                      </div>
                     </div>
                   </div>
 
@@ -1260,7 +1305,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
                         <span>Pro Extensions</span>
                         <span>👑</span>
                       </h3>
-                      <span className="px-2 py-0.2 rounded-full bg-[#16221b] text-slate-400 text-[10px] font-mono">2 pro tools</span>
+                      <span className="px-2 py-0.2 rounded-full bg-[#16221b] text-slate-400 text-[10px] font-mono">1 pro tool</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
@@ -1296,48 +1341,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
 
                           <p className="text-[11px] text-slate-400 leading-relaxed">
                             Generate dynamic conversational podcast-style audio summaries of reading topics using Edge TTS.
-                          </p>
-                        </div>
-
-                        <button
-                          onClick={onExplorePro}
-                          className="w-full py-1.5 rounded-lg bg-[#22c55e] hover:bg-[#16a34a] text-slate-950 font-bold text-xs transition-colors shadow-sm mt-2"
-                        >
-                          Unlock with Pro
-                        </button>
-                      </div>
-
-                      {/* YouTube Ingestion Card */}
-                      <div className="p-4 rounded-xl bg-[#111a15] border border-[#1d2d23] space-y-3 flex flex-col justify-between">
-                        <div className="space-y-2.5">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2.5">
-                              <div className="w-8 h-8 rounded-lg bg-[#16221b] border border-[#23372b] flex items-center justify-center text-rose-400">
-                                <Video className="w-4 h-4" />
-                              </div>
-                              <div>
-                                <div className="flex items-center gap-1.5">
-                                  <span className="font-bold text-white text-xs truncate max-w-[120px]">YouTube Ingestion & ...</span>
-                                  <span className="px-1.5 py-0.2 rounded bg-rose-500/10 text-rose-400 text-[9px] font-mono uppercase font-bold border border-rose-500/20">PRO</span>
-                                </div>
-                                <span className="text-[10px] text-slate-500 font-mono">V0.1.0 • Ingestion</span>
-                              </div>
-                            </div>
-
-                            <button
-                              onClick={() => setExtYoutubeEnabled(!extYoutubeEnabled)}
-                              className={`w-9 h-5 rounded-full transition-colors relative p-0.5 ${
-                                extYoutubeEnabled ? 'bg-emerald-500' : 'bg-slate-700'
-                              }`}
-                            >
-                              <div className={`w-4 h-4 rounded-full bg-white transition-transform ${
-                                extYoutubeEnabled ? 'translate-x-4' : 'translate-x-0'
-                              }`} />
-                            </button>
-                          </div>
-
-                          <p className="text-[11px] text-slate-400 leading-relaxed">
-                            Ingest YouTube video lectures, extract timestamped transcripts with chapters, and study with embedded video player and quizzes.
                           </p>
                         </div>
 

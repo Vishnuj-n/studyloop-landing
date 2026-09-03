@@ -28,7 +28,7 @@ export const ExtensionsHub: React.FC = () => {
     {
       id: 'youtube',
       name: 'YouTube Lecture Ingestion',
-      tier: 'Pro',
+      tier: 'Free',
       icon: Youtube,
       color: 'text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20',
       shortDesc: 'Transcribes & chunks video lectures into timestamped reading chunks with synchronized video jumping & validation quizzes.'
@@ -127,9 +127,9 @@ export const ExtensionsHub: React.FC = () => {
           {activeTab === 'youtube' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-6 space-y-4">
-                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-mono">
+                <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono">
                   <Youtube className="w-3.5 h-3.5" />
-                  <span>Pro Extension: Video Lecture Parser</span>
+                  <span>Free Extension: Video Lecture Parser</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
                   Turn Video Lectures into Structured, Timestamped Study Chunks

@@ -52,7 +52,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
     { feature: 'Examiner Written Assessment Rubric Mode', free: true, pro: true },
     { feature: 'AI Text Simplifier (Proofs & Jargon into Structured Markdown)', free: true, pro: true },
     { feature: 'Full BYOK Support (Gemini Free, Groq, Ollama, OpenAI)', free: true, pro: true },
-    { feature: 'YouTube Lecture Ingestion & Synchronized Video Queue', free: false, pro: true, highlight: true },
+    { feature: 'YouTube Lecture Ingestion & Synchronized Video Queue', free: true, pro: true },
     { feature: 'Edge-TTS On-Device Two-Host Conversational Audio Briefings', free: false, pro: true, highlight: true },
     { feature: '12-Month Access to Future Importers (Vaults & MarkItDown)', free: false, pro: true, highlight: true },
     { feature: 'Desktop Loopback 1-Click License Activation', free: false, pro: true, highlight: true },
@@ -135,6 +135,10 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>YouTube Lecture Ingestion & Synchronized Video Queue</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>Full BYOK support (Gemini Free, Groq, Ollama, OpenAI)</span>
                 </div>
               </div>
@@ -182,11 +186,11 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>YouTube Lecture Ingestion & Synchronized Video Queue</span>
+                  <span>Edge-TTS On-Device Two-Host Podcast Audio Briefings</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Edge-TTS On-Device Two-Host Podcast Audio Briefings</span>
+                  <span>Vault & MarkItDown Importers (Notion, Obsidian, Markdown)</span>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Check className="w-4 h-4 text-emerald-400 shrink-0" />

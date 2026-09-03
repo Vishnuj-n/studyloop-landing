@@ -114,11 +114,11 @@ Visualize Local-First Data Pipeline and zero-markup provider cost comparison.
 
 ---
 
-### Section 6: Pro Extensions Hub
-- **YouTube Lecture Ingestion** (`Pro`)
+### Section 6: Extensions Hub
+- **YouTube Lecture Ingestion** (`Free` - deterministic transcript chunking & quizzes)
 - **Audio Overview (Podcast)** (`Pro` - requires local Python for Edge TTS)
-- **Reader "Simplify" Tool** (`Pro`)
-- **Future Importers (12 Mo)** (`Pro`)
+- **Reader "Simplify" Tool** (`Free`)
+- **Future Importers (12 Mo)** (`Pro` - Obsidian/Notion Vaults, MarkItDown)
 
 ---
 
