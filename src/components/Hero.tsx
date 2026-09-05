@@ -164,7 +164,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
             onClick={onExplorePro}
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 font-medium text-sm transition-all"
           >
-            <span>Explore Pro Extensions ($39/yr)</span>
+            <span>Founder's Lifetime Pass (Early Access)</span>
             <ChevronRight className="w-4 h-4 text-slate-400" />
           </button>
         </div>

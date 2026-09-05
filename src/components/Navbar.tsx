@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Show, SignInButton, UserButton } from '@clerk/react';
+import { Link } from 'react-router-dom';
+import { Show, UserButton } from '@clerk/react';
 import { useTheme } from '../context/ThemeContext';
 import { 
   Download, 
@@ -21,58 +22,54 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: 'How It Works', href: '#how-it-works' },
-    { name: 'The Engine', href: '#closed-loop-engine' },
-    { name: 'Priority Queue', href: '#priority-queue' },
-    { name: 'BYOK Privacy', href: '#byok-privacy' },
-    { name: 'Extensions', href: '#extensions' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'FAQ', href: '#faq' },
+    { name: 'Features', href: '/#closed-loop-engine' },
+    { name: 'BYOK & Privacy', href: '/#byok-privacy' },
+    { name: 'Pricing', href: '/#pricing' },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 dark:bg-[#0B0F17]/90 border-b border-slate-200 dark:border-white/[0.08] transition-colors">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-white/90 dark:bg-[#0B0F17]/90 border-b border-slate-200/80 dark:border-white/[0.08] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Left: Brand Logomark & Version Pill */}
         <div className="flex items-center gap-3">
-          <a href="#" className="flex items-center gap-2.5 group">
+          <Link to="/" className="flex items-center gap-2.5 group">
             <div className="w-8 h-8 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-slate-950 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
               <Cpu className="w-4 h-4" />
             </div>
             <span className="font-display font-bold text-lg tracking-tight text-slate-900 dark:text-white">
               Study<span className="text-slate-500 dark:text-slate-400">Loop</span>
             </span>
-          </a>
+          </Link>
           <span className="inline-flex items-center gap-1.5 px-2 py-0.5 text-[11px] font-mono font-medium rounded-full bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700/60">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             v1.0 Desktop
           </span>
         </div>
 
-        {/* Center: Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-6">
+        {/* Center: Streamlined Nav Links */}
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors tracking-wide"
+              className="text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors tracking-wide"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Right: Actions (Auth, GitHub, Theme Switcher, Download CTA) */}
-        <div className="hidden sm:flex items-center gap-3">
-          {/* Clerk Modal Auth Button */}
+        {/* Right: Actions */}
+        <div className="hidden sm:flex items-center gap-4">
+          {/* Clerk Auth Trigger -> /login page */}
           <Show when="signed-out">
-            <SignInButton mode="modal">
-              <button className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all border border-slate-200 dark:border-slate-700/60">
-                <LogIn className="w-3.5 h-3.5" />
-                <span>Sign In</span>
-              </button>
-            </SignInButton>
+            <Link
+              to="/login"
+              className="text-xs font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors px-1 py-1"
+            >
+              Sign In
+            </Link>
           </Show>
           <Show when="signed-in">
             <UserButton />
@@ -84,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
             target="_blank"
             rel="noopener noreferrer"
             title="View Vishnuj-n/studyloop on GitHub"
-            className="p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700/50 flex items-center gap-1.5 text-xs font-medium"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all flex items-center"
           >
             <svg
               className="w-4 h-4 fill-current"
@@ -97,14 +94,13 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
                 d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
               />
             </svg>
-            <span className="font-mono text-[11px]">GitHub</span>
           </a>
 
-          {/* Theme Toggle Button with Sun/Moon Animation */}
+          {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle light and dark theme"
-            className="relative p-2 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 border border-slate-200 dark:border-slate-800 transition-all overflow-hidden"
+            className="p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-all"
           >
             <div className="relative w-4 h-4 flex items-center justify-center">
               <Sun
@@ -127,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
           {/* Windows Download CTA */}
           <button
             onClick={onOpenDownload}
-            className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 shadow-sm transition-all active:scale-95"
+            className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100 shadow-sm transition-all active:scale-95 ml-1"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download for Windows</span>
@@ -174,15 +170,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
           ))}
           <div className="pt-3 border-t border-slate-200 dark:border-white/10 flex flex-col gap-2">
             <Show when="signed-out">
-              <SignInButton mode="modal">
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full flex items-center justify-center gap-2 py-2 text-xs font-semibold text-slate-900 dark:text-white rounded-lg bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700"
-                >
-                  <LogIn className="w-4 h-4" />
-                  <span>Sign In / Register</span>
-                </button>
-              </SignInButton>
+              <Link
+                to="/login"
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-full flex items-center justify-center gap-2 py-2 text-xs font-semibold text-slate-900 dark:text-white rounded-lg bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Sign In / Register</span>
+              </Link>
             </Show>
             <a
               href="https://github.com/Vishnuj-n/studyloop"
@@ -209,4 +204,5 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
     </header>
   );
 };
+
 

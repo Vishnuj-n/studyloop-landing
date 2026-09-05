@@ -12,12 +12,12 @@ const FAQS: FaqItem[] = [
     answer: "Yes. The core application (local PDF reader, deterministic 8-tier queue, on-device ONNX vector search, FSRS-4 flashcard reviews, synchronous comprehension quizzes, and Socratic concept rescue) is 100% free with no trial limits, no credit card required, and no hidden feature lockouts."
   },
   {
-    question: "Why a 1-Year Pass instead of a monthly subscription?",
-    answer: "We believe recurring monthly subscriptions create artificial lock-in and cognitive overhead. You pay once ($39) for 12 full months of Pro extension updates. When your pass period expires, you keep using all extensions you currently have forever (perpetual fallback)."
+    question: "What is the difference between the Annual Supporter and Founder's Lifetime Pass?",
+    answer: "Both tiers directly support independent development and unlock all advanced extensions (Deep Structured PDF, Edge-TTS audio podcasts, YouTube ingestion). The Annual Supporter pass (₹199/yr) grants 12 months of updates, while the Founder's Lifetime Pass (₹499 one-time) guarantees lifetime access to all future extensions and tools with zero recurring subscriptions."
   },
   {
-    question: "How does Desktop License Activation work?",
-    answer: "When you complete purchase on the website, a secure local loopback callback (http://127.0.0.1:49281) automatically communicates with your running StudyLoop desktop app to securely store your token in your Windows Credential Keyring without tedious license key copying."
+    question: "How does Pro Pass Activation work?",
+    answer: "Your pass is tied directly to your registered Clerk account email. Simply sign in to your StudyLoop desktop app using your Clerk credentials, and all Pro extensions and founder privileges are activated instantly. No license keys or manual token copying required."
   },
   {
     question: "What are the requirements for Audio Overview?",

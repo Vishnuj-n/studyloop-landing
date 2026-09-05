@@ -1,66 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   Check, 
   X, 
   Download, 
   Sparkles, 
-  ShieldCheck, 
   Zap, 
-  RotateCcw, 
-  CheckCircle2, 
-  Terminal, 
-  ExternalLink, 
-  Laptop
+  Heart 
 } from 'lucide-react';
-import confetti from 'canvas-confetti';
-
 interface PricingSectionProps {
   onOpenDownload: () => void;
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }) => {
-  const [showLicenseSimulation, setShowLicenseSimulation] = useState(false);
-  const [licenseActivated, setLicenseActivated] = useState(false);
-
-  const triggerCelebration = () => {
-    confetti({
-      particleCount: 40,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#0F172A', '#0EA5E9', '#10B981'],
-    });
-  };
-
-  const handleSimulateActivation = () => {
-    setShowLicenseSimulation(true);
-    setTimeout(() => {
-      setLicenseActivated(true);
-      triggerCelebration();
-    }, 1200);
-  };
-
   const comparisonRows = [
-    { feature: 'Deterministic 8-Tier Cognitive Study Queue', free: true, pro: true },
-    { feature: 'Pure Go Native PDF Engine (Zero Python Runtime Dependency)', free: true, pro: true },
-    { feature: 'Trust-Based Reading (User-Paced, No Surveillance Timers)', free: true, pro: true },
-    { feature: 'Smart Concept-Aware Reading Boundaries (sqlite-vec, No Cliffhangers)', free: true, pro: true },
-    { feature: 'Synchronous Active Comprehension Quizzes', free: true, pro: true },
-    { feature: 'FSRS-4 Spaced Repetition Engine (Decoupled & Batched)', free: true, pro: true },
-    { feature: 'Dual-Track Socratic Rescue (In-App + Prompt Export)', free: true, pro: true },
-    { feature: 'Graceful Queue Unblocking (external_help_required Flag)', free: true, pro: true },
-    { feature: 'Deterministic Milestone Exams (10-Quiz Question Pooling, 0 Token Cost)', free: true, pro: true },
-    { feature: 'Examiner Written Assessment Rubric Mode', free: true, pro: true },
-    { feature: 'AI Text Simplifier (Proofs & Jargon into Structured Markdown)', free: true, pro: true },
-    { feature: 'Full BYOK Support (Gemini Free, Groq, Ollama, OpenAI)', free: true, pro: true },
-    { feature: 'YouTube Lecture Ingestion & Synchronized Video Queue', free: true, pro: true },
-    { feature: 'Edge-TTS On-Device Two-Host Conversational Audio Briefings', free: false, pro: true, highlight: true },
-    { feature: '12-Month Access to Future Importers (Vaults & MarkItDown)', free: false, pro: true, highlight: true },
-    { feature: 'Desktop Loopback 1-Click License Activation', free: false, pro: true, highlight: true },
+    { feature: 'Deterministic 8-Tier Cognitive Study Queue', free: true, annual: true, pro: true },
+    { feature: 'Pure Go Native PDF Engine (Zero Python Runtime Dependency)', free: true, annual: true, pro: true },
+    { feature: 'Trust-Based Reading (User-Paced, No Surveillance Timers)', free: true, annual: true, pro: true },
+    { feature: 'Smart Concept-Aware Reading Boundaries (sqlite-vec, No Cliffhangers)', free: true, annual: true, pro: true },
+    { feature: 'Synchronous Active Comprehension Quizzes', free: true, annual: true, pro: true },
+    { feature: 'FSRS-4 Spaced Repetition Engine (Decoupled & Batched)', free: true, annual: true, pro: true },
+    { feature: 'Dual-Track Socratic Rescue (In-App + Prompt Export)', free: true, annual: true, pro: true },
+    { feature: 'Graceful Queue Unblocking (external_help_required Flag)', free: true, annual: true, pro: true },
+    { feature: 'Deterministic Milestone Exams (10-Quiz Question Pooling, 0 Token Cost)', free: true, annual: true, pro: true },
+    { feature: 'Examiner Written Assessment Rubric Mode', free: true, annual: true, pro: true },
+    { feature: 'AI Text Simplifier (Proofs & Jargon into Structured Markdown)', free: true, annual: true, pro: true },
+    { feature: 'Full BYOK Support (Gemini Free, Groq, Ollama, OpenAI)', free: true, annual: true, pro: true },
+    { feature: 'YouTube Lecture Ingestion & Synchronized Video Queue', free: true, annual: true, pro: true },
+    { feature: 'Deep Structured PDF Parsing (2-Column Academic Papers, Multi-Row Tables & Code Blocks)', free: false, annual: true, pro: true, highlight: true },
+    { feature: 'Edge-TTS On-Device Two-Host Conversational Audio Briefings / Podcasts', free: false, annual: true, pro: true, highlight: true },
+    { feature: '12-Month Access to All Pro Importers & Future Extensions', free: false, annual: true, pro: true, highlight: true },
+    { feature: 'Founder Badge & Lifetime Access to All Future Pro Importers Forever', free: false, annual: false, pro: true, highlight: true },
+    { feature: 'Direct Indie Developer Support & Roadmap Priority', free: false, annual: true, pro: true, highlight: true },
+    { feature: 'Instant Activation via Registered Clerk Account Email', free: false, annual: true, pro: true, highlight: true },
   ];
 
   return (
     <section id="pricing" className="py-20 border-t border-slate-200 dark:border-white/[0.08] bg-white dark:bg-canvas-dark relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
@@ -68,18 +44,18 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
             Honest, Transparent Pricing
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
-            No Monthly Subscriptions. No Hostage Data.
+            Support Independent Software. No Hostage Data.
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            The core desktop app is 100% free forever. Support ongoing development with a single annual pass for power extensions.
+            The core desktop app is 100% free forever. Support the solo developer building sovereign study tools and unlock advanced AI extensions.
           </p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        {/* Pricing Cards Grid (3 Cards) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-16 items-stretch">
           
           {/* Card 1: Community Edition */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-50 dark:bg-[#111827] border border-slate-200 dark:border-white/[0.08] flex flex-col justify-between shadow-xs">
+          <div className="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-[#111827] border border-slate-200 dark:border-white/[0.08] flex flex-col justify-between shadow-xs">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400">
@@ -92,132 +68,196 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
 
               <div className="mb-4">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="font-display text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white">$0</span>
-                  <span className="text-sm font-mono text-slate-500">/ forever</span>
+                  <span className="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">$0</span>
+                  <span className="text-xs font-mono text-slate-500">/ forever</span>
                 </div>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                  For students and sovereign learners who want complete local control over their textbooks.
+                  For students and sovereign learners who want 100% local, private study without cloud toll.
                 </p>
               </div>
 
-              <div className="space-y-2.5 pt-5 border-t border-slate-200 dark:border-white/10 mb-8 text-xs text-slate-700 dark:text-slate-300">
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Deterministic 8-Tier Cognitive Study Queue</span>
+              <div className="space-y-2.5 pt-4 border-t border-slate-200 dark:border-white/10 mb-8 text-xs text-slate-700 dark:text-slate-300">
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>8-Tier Cognitive Study Queue</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Pure Go Native PDF Engine (Zero Python Runtime)</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Pure Go Native PDF Engine (Zero Python)</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Trust-Based, User-Paced Reading (No Surveillance)</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Smart Vector Boundaries (<code className="font-mono text-[11px]">sqlite-vec</code>)</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Smart Concept Boundaries via <code className="font-mono text-xs">sqlite-vec</code></span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Dual-Track Socratic Concept Rescue</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Dual-Track Socratic Rescue & Graceful Unblocking</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Deterministic Milestone Exams</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Deterministic Milestone Exams (10-Quiz Question Pooling)</span>
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>FSRS-4 Spaced Repetition Engine</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>AI Text Simplifier (Academic Proofs into Markdown)</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>AI Text Simplifier (Proofs into Markdown)</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>YouTube Lecture Ingestion & Synchronized Video Queue</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>YouTube Lecture Ingestion & Queue</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Full BYOK support (Gemini Free, Groq, Ollama, OpenAI)</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <span>Full BYOK Support (Gemini, Groq, Ollama)</span>
                 </div>
               </div>
             </div>
 
             <button
               onClick={onOpenDownload}
-              className="w-full py-3.5 px-4 rounded-xl bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/15 text-slate-900 dark:text-white font-semibold text-xs transition-colors flex items-center justify-center gap-2"
+              className="w-full py-3 px-4 rounded-xl bg-slate-200 dark:bg-white/10 hover:bg-slate-300 dark:hover:bg-white/15 text-slate-900 dark:text-white font-semibold text-xs transition-colors flex items-center justify-center gap-2"
             >
               <Download className="w-4 h-4" />
-              <span>Download Free Desktop App (Windows)</span>
+              <span>Download Free (Windows)</span>
             </button>
           </div>
 
-          {/* Card 2: 1-Year Pro Extensions Pass */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-slate-900 text-white dark:bg-[#111827] border-2 border-slate-900 dark:border-slate-700 relative flex flex-col justify-between shadow-lg">
-            <div className="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-slate-800 dark:bg-slate-700 text-slate-200 border border-slate-700 text-[10px] font-mono font-bold uppercase tracking-wider">
-              Single Payment
+          {/* Card 2: Annual Supporter Pass (₹199/yr) */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-[#111827] border border-sky-500/40 dark:border-sky-500/30 flex flex-col justify-between shadow-sm relative">
+            <div className="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30 text-[10px] font-mono font-bold uppercase tracking-wider">
+              Developer Supporter
             </div>
 
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-300">
-                  Pro Extensions Pass
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+                  <Heart className="w-3.5 h-3.5 fill-current" />
+                  <span>Annual Supporter</span>
                 </span>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-white/10 text-slate-200">
-                  No Auto-Renew
+                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-sky-500/10 text-sky-600 dark:text-sky-400">
+                  1-Year Pass
                 </span>
               </div>
 
               <div className="mb-4">
                 <div className="flex items-baseline gap-1.5">
-                  <span className="font-display text-4xl sm:text-5xl font-bold text-white">$39</span>
-                  <span className="text-sm font-mono text-slate-400">/ 12-month pass</span>
+                  <span className="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">₹199</span>
+                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400">/ year (~$2.40 USD)</span>
                 </div>
-                <p className="text-xs text-slate-300 mt-2">
-                  For serious learners who study from video lectures, audio briefings, and desire advanced tools.
+                <p className="text-xs text-slate-600 dark:text-slate-300 mt-2">
+                  Fuel indie development with an affordable yearly pass. Unlocks all Pro extensions for 12 months.
                 </p>
               </div>
 
-              <div className="space-y-2.5 pt-5 border-t border-white/10 mb-8 text-xs text-slate-200">
-                <div className="flex items-center gap-2.5 font-semibold text-white">
-                  <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
-                  <span>Everything in Free Community Edition</span>
+              <div className="space-y-2.5 pt-4 border-t border-slate-200 dark:border-white/10 mb-8 text-xs text-slate-700 dark:text-slate-300">
+                <div className="flex items-center gap-2 font-medium text-slate-900 dark:text-white">
+                  <Sparkles className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                  <span>Everything in Community Edition</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Edge-TTS On-Device Two-Host Podcast Audio Briefings</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <span>Deep Structured PDF (2-Column Papers & Tables)</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Vault & MarkItDown Importers (Notion, Obsidian, Markdown)</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <span>Edge-TTS AI Audio Briefings / Podcasts</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>All New Extensions & Importers for 12 Months</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <span>YouTube Lecture Ingestion & Timestamp Sync</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Instant Desktop Loopback License Activation</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <span>12 Months of All Future Pro Extensions & Updates</span>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Perpetual Fallback: Keep everything you unlocked forever</span>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <span>Directly Back Independent Developer Tooling</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
+                  <span>Instant Clerk Account Email Activation</span>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSe9GT8cK_zUWLPMR6YSMn4Cf3s8Re-2PBcikN06o3fn2cVYgA/viewform"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white dark:bg-white dark:hover:bg-slate-100 dark:text-slate-950 font-semibold text-xs transition-colors flex items-center justify-center gap-2 text-center shadow-sm"
+            >
+              <span>Get Annual Pass (₹199/yr) →</span>
+            </a>
+          </div>
+
+          {/* Card 3: Founder's Lifetime Pass (₹499) */}
+          <div className="p-6 sm:p-7 rounded-2xl bg-slate-900 text-white dark:bg-[#111827] border-2 border-emerald-500/60 relative flex flex-col justify-between shadow-xl ring-2 ring-emerald-500/20">
+            <div className="absolute -top-3 right-6 px-3 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-mono font-bold uppercase tracking-wider shadow-sm">
+              Best Value • Founder Early Access
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                  <Zap className="w-3.5 h-3.5 fill-current" />
+                  <span>Founder's Lifetime Pass</span>
+                </span>
+              </div>
+
+              <div className="mb-4">
+                <div className="flex items-baseline gap-2">
+                  <span className="font-display text-3xl sm:text-4xl font-bold text-white">₹499</span>
+                  <span className="text-xs font-mono text-slate-400">/ lifetime</span>
+                </div>
+                <div className="text-[11px] font-mono text-emerald-400/90 mt-1">
+                  Single payment • Free lifetime updates
+                </div>
+                <p className="text-xs text-slate-300 mt-2">
+                  Become a founding backer. Lock in lifetime access to all current and future Pro extensions forever.
+                </p>
+              </div>
+
+              <div className="space-y-3 pt-4 border-t border-white/10 mb-8 text-xs text-slate-200">
+                <div className="flex items-center gap-2 font-semibold text-white">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                  <span>Everything in Annual Supporter, plus:</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Lifetime Access to All Future Pro Importers & Tools</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Never pay recurring subscription fees</span>
+                </div>
+                <div className="flex items-center gap-2 font-medium text-emerald-300">
+                  <Heart className="w-3.5 h-3.5 text-rose-400 fill-current shrink-0" />
+                  <span>Direct Developer Support & Founder Recognition</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <span>Instant Clerk account email activation</span>
                 </div>
               </div>
             </div>
 
             <div className="space-y-2">
-              <button
-                onClick={handleSimulateActivation}
-                className="w-full py-3.5 px-4 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-semibold text-xs shadow-md transition-all active:scale-[0.99] flex items-center justify-center gap-2"
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSe9GT8cK_zUWLPMR6YSMn4Cf3s8Re-2PBcikN06o3fn2cVYgA/viewform"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.99] flex items-center justify-center gap-2 text-center"
               >
-                <Zap className="w-4 h-4 text-amber-500 fill-current" />
-                <span>Get 1-Year Pro Pass ($39 Single Payment)</span>
-              </button>
+                <Zap className="w-4 h-4 text-slate-950 fill-current" />
+                <span>★ Apply for Lifetime Early Access →</span>
+              </a>
 
-              <p className="text-[11px] text-center font-mono text-slate-400">
-                Single upfront charge · No recurring credit card fees
+              <p className="text-[11px] font-mono text-center text-slate-400 pt-1">
+                One-time charge • No recurring subscription
               </p>
             </div>
           </div>
@@ -234,8 +274,9 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
             <thead>
               <tr className="border-b border-slate-200 dark:border-white/10 text-slate-500 font-mono">
                 <th className="pb-3 font-semibold text-slate-700 dark:text-slate-300">Feature / Capability</th>
-                <th className="pb-3 font-semibold text-center w-36">Community Edition ($0)</th>
-                <th className="pb-3 font-semibold text-center w-44 text-slate-900 dark:text-white font-bold">Pro Pass ($39/yr)</th>
+                <th className="pb-3 font-semibold text-center w-32">Community ($0)</th>
+                <th className="pb-3 font-semibold text-center w-36 text-sky-600 dark:text-sky-400 font-semibold">Annual Supporter (₹199/yr)</th>
+                <th className="pb-3 font-semibold text-center w-40 text-emerald-600 dark:text-emerald-400 font-bold">Founder's Lifetime (₹499)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200/60 dark:divide-white/5">
@@ -251,6 +292,13 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                       <X className="w-4 h-4 text-slate-400 dark:text-slate-600 mx-auto" />
                     )}
                   </td>
+                  <td className="py-3.5 text-center">
+                    {row.annual ? (
+                      <Check className="w-4 h-4 text-sky-600 dark:text-sky-400 mx-auto" />
+                    ) : (
+                      <X className="w-4 h-4 text-slate-400 dark:text-slate-600 mx-auto" />
+                    )}
+                  </td>
                   <td className="py-3.5 text-center font-bold">
                     <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 mx-auto" />
                   </td>
@@ -259,47 +307,6 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
             </tbody>
           </table>
         </div>
-
-        {/* Loopback License Activation Modal Simulation */}
-        {showLicenseSimulation && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fade-in">
-            <div className="w-full max-w-md p-6 rounded-2xl bg-slate-900 border border-white/15 shadow-2xl text-slate-200 space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <Laptop className="w-4 h-4 text-slate-300" />
-                  <span className="font-mono text-xs font-bold text-white">Desktop Loopback Activation</span>
-                </div>
-                <button onClick={() => setShowLicenseSimulation(false)} className="text-slate-400 hover:text-white">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {!licenseActivated ? (
-                <div className="text-center py-6 space-y-3 font-mono text-xs">
-                  <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto" />
-                  <p className="text-slate-300">Communicating with local StudyLoop desktop agent...</p>
-                  <p className="text-[11px] text-slate-500">POST http://127.0.0.1:49281/activate</p>
-                </div>
-              ) : (
-                <div className="text-center py-4 space-y-3 font-mono text-xs animate-fade-in">
-                  <div className="w-12 h-12 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto border border-emerald-500/40">
-                    <CheckCircle2 className="w-6 h-6" />
-                  </div>
-                  <h4 className="font-display text-base font-bold text-white">Pro Pass Activated!</h4>
-                  <p className="text-slate-400 text-xs font-sans">
-                    License token securely stored in your local Windows Keyring. All Pro extensions are now unlocked in your desktop app.
-                  </p>
-                  <button
-                    onClick={() => setShowLicenseSimulation(false)}
-                    className="w-full py-2.5 rounded-xl bg-white hover:bg-slate-100 text-slate-950 font-semibold text-xs mt-2"
-                  >
-                    Done
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
 
       </div>
     </section>
