@@ -133,20 +133,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
         {/* Top Pill */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium tracking-wide mb-8 animate-fade-in">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>100% Free Core Desktop App · Local-First · Zero Monthly Markups</span>
+          <span>You're not alone. Let's fix that. · Free · Local-First</span>
         </div>
 
         {/* Main Headline */}
         <h1 className="font-display text-4xl sm:text-5xl md:text-[62px] font-bold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 text-balance">
-          The Anti-Chatbot AI Study Queue <br className="hidden sm:inline" />
+          You studied for hours.{' '}
+          <br className="hidden sm:inline" />
           <span className="text-slate-500 dark:text-slate-400">
-            for Serious Learners.
+            6 months later — gone.
           </span>
         </h1>
 
-        {/* Subtitle - Medium density */}
+        {/* Subtitle - Emotional, pain-first */}
         <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 text-pretty">
-          Stop getting lost in endless chat windows. StudyLoop turns your textbooks and video lectures into a deterministic, local-first queue with on-device search, validation quizzes, and FSRS-4 repetition.
+          We've all been there. Hours of notes, videos, and textbooks — then an exam or job interview arrives and it's like you never studied. It's not your fault. Passive reading and AI chat windows <em>feel</em> productive but don't encode memory. StudyLoop was built to fix that: an active daily study queue with AI checkpoint quizzes, Socratic rescues, and spaced repetition that keeps knowledge alive — not just for the test, but for life.
         </p>
 
         {/* Primary CTAs */}
