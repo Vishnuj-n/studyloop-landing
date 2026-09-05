@@ -23,7 +23,9 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose })
 
   if (!isOpen) return null;
 
-  const shaHash = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855";
+  const shaHash = "83041558b264d248096346e480bb6e64ee8502cef1af9731897078aeb552c917";
+
+  const LATEST_DOWNLOAD_URL = "https://github.com/Vishnuj-n/studyloop/releases/latest/download/Studyloop-amd64-installer.exe";
 
   const handleStartDownload = () => {
     setDownloadStarted(true);
@@ -33,6 +35,14 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose })
       origin: { y: 0.6 },
       colors: ['#0F172A', '#0EA5E9', '#10B981'],
     });
+
+    // Trigger direct download of the latest release executable
+    const link = document.createElement('a');
+    link.href = LATEST_DOWNLOAD_URL;
+    link.setAttribute('download', 'Studyloop-amd64-installer.exe');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const handleCopySha = () => {
@@ -56,7 +66,7 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose })
                 Download StudyLoop for Windows
               </h3>
               <p className="text-[11px] font-mono text-slate-400">
-                v1.0.0 Desktop Installer (64-bit x64)
+                Latest Release Installer (64-bit x64)
               </p>
             </div>
           </div>
@@ -75,11 +85,11 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose })
           <div className="p-4 rounded-xl bg-slate-950 border border-white/10 space-y-2">
             <div className="flex items-center justify-between font-mono text-[11px]">
               <span className="text-slate-400">File:</span>
-              <span className="text-white font-bold">StudyLoop-Setup-1.0.0.exe</span>
+              <span className="text-white font-bold">Studyloop-amd64-installer.exe</span>
             </div>
             <div className="flex items-center justify-between font-mono text-[11px]">
               <span className="text-slate-400">Size:</span>
-              <span className="text-slate-300">~68.4 MB (Standalone Bundle)</span>
+              <span className="text-slate-300">~30.1 MB (Installer Bundle)</span>
             </div>
             <div className="flex items-center justify-between font-mono text-[11px]">
               <span className="text-slate-400">Compatibility:</span>
@@ -140,18 +150,24 @@ export const DownloadModal: React.FC<DownloadModalProps> = ({ isOpen, onClose })
                   <span>Download Initiated!</span>
                 </div>
                 <p className="text-[11px] text-emerald-200/90 font-sans">
-                  Your browser is downloading StudyLoop-Setup-1.0.0.exe. Open the file to launch your local study environment.
+                  Your browser is downloading Studyloop-amd64-installer.exe. If it didn't start automatically,{' '}
+                  <a
+                    href={LATEST_DOWNLOAD_URL}
+                    className="underline text-white hover:text-emerald-300 font-semibold"
+                  >
+                    click here to download
+                  </a>.
                 </p>
               </div>
             )}
 
             <a
-              href="https://github.com/Vishnuj-n/studyloop"
+              href="https://github.com/Vishnuj-n/studyloop/releases/latest"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full py-2.5 px-4 rounded-xl border border-white/10 hover:bg-white/5 text-slate-300 font-mono text-xs flex items-center justify-center gap-2 transition-colors"
             >
-              <span>View Source on GitHub</span>
+              <span>View Latest Release on GitHub</span>
               <ExternalLink className="w-3 h-3 text-slate-400" />
             </a>
           </div>
