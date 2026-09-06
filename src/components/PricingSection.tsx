@@ -5,7 +5,9 @@ import {
   Download, 
   Sparkles, 
   Zap, 
-  Heart 
+  Heart,
+  ShieldCheck,
+  Lock
 } from 'lucide-react';
 interface PricingSectionProps {
   onOpenDownload: () => void;
@@ -40,14 +42,14 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium uppercase tracking-wider mb-4">
-            Honest, Transparent Pricing
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+            Act 05: Zero-Risk Ownership
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
-            Support Independent Software. No Hostage Data.
+            Never Pay SaaS Rent to Study Your Own Notes.
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            The core desktop app is 100% free forever. Support the solo developer building sovereign study tools and unlock advanced AI extensions.
+            The core desktop app is 100% free and offline forever. Back an indie developer with a one-time founder's pass and unlock all advanced AI extensions with zero recurring fees.
           </p>
         </div>
 
@@ -262,6 +264,31 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
             </div>
           </div>
 
+        </div>
+
+        {/* The Zero-Risk Fear-Elimination Safety Net Banner */}
+        <div className="mb-12 p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <div className="flex items-center gap-3 text-left">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 dark:text-white text-sm">
+                The 100% Zero-Risk Guarantee
+              </h4>
+              <p className="text-slate-600 dark:text-slate-300 text-[11px] mt-0.5">
+                Your local database is fully sovereign SQLite. You will never lose access, and no notes will ever be locked behind a paywall.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-emerald-700 dark:text-emerald-300 shrink-0">
+            <span className="flex items-center gap-1">
+              <Lock className="w-3.5 h-3.5" /> 100% Offline Storage
+            </span>
+            <span>•</span>
+            <span>No Credit Card Required</span>
+          </div>
         </div>
 
         {/* Full Feature Comparison Table */}

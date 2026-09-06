@@ -35,14 +35,14 @@ export const ByokArchitecture: React.FC = () => {
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-medium uppercase tracking-wider mb-4">
-            Zero Cloud Markups · 100% Data Sovereignty
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+            Act 04: Sovereignty & Zero Markup
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
-            Bring Your Own Key (BYOK) & Local-First Architecture
+            Bring Your Own Key (BYOK) & Local-First Isolation
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Your textbooks, notes, and study queue never touch our servers. Connect directly to your AI provider or run completely offline with local Ollama.
+            Your textbooks, notes, and study queue never touch any third-party server. Connect directly to free Gemini API keys, OpenAI, Groq, or run 100% offline with local Ollama.
           </p>
         </div>
 

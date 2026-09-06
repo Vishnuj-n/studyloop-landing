@@ -36,8 +36,10 @@ import {
   Video,
   BookOpenCheck,
   Volume2,
-  ChevronDown
+  ChevronDown,
+  ShieldCheck
 } from 'lucide-react';
+import { LiveTelemetryBadges } from './LiveTelemetryBadges';
 
 interface HeroProps {
   onOpenDownload: () => void;
@@ -130,13 +132,13 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
       
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
-        {/* Top Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium tracking-wide mb-8 animate-fade-in">
+        {/* Top Zero-Second Provocative Hook Pill */}
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800/90 border border-slate-200 dark:border-emerald-500/30 text-slate-800 dark:text-emerald-300 text-xs font-mono font-medium tracking-wide mb-6 animate-fade-in shadow-xs">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-          <span>You're not alone. Let's fix that. · Free · Local-First</span>
+          <span>Passive studying is an illusion. Here is the cure.</span>
         </div>
 
-        {/* Main Headline */}
+        {/* Main Headline - High emotional resonance & contrast */}
         <h1 className="font-display text-4xl sm:text-5xl md:text-[62px] font-bold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-6 text-balance">
           You studied for hours.{' '}
           <br className="hidden sm:inline" />
@@ -145,16 +147,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
           </span>
         </h1>
 
-        {/* Subtitle - Emotional, pain-first */}
-        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 text-pretty">
-          We've all been there. Hours of notes, videos, and textbooks — then an exam or job interview arrives and it's like you never studied. It's not your fault. Passive reading and AI chat windows <em>feel</em> productive but don't encode memory. StudyLoop was built to fix that: an active daily study queue with AI checkpoint quizzes, Socratic rescues, and spaced repetition that keeps knowledge alive — not just for the test, but for life.
+        {/* Subtitle - The 2-Second Blink Test Pass */}
+        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed mb-8 text-pretty">
+          Stop re-reading notes you forget in 3 weeks. <strong>StudyLoop</strong> turns your textbooks and lecture videos into an automated daily recall queue with AI checkpoint quizzes and Socratic rescues that guarantee permanent retention.
         </p>
 
-        {/* Primary CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+        {/* Primary CTAs with Loss-Aversion Framing */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
           <button
             onClick={onOpenDownload}
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-900/20 transition-all active:scale-[0.98]"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-900/20 transition-all active:scale-[0.98] cursor-pointer"
           >
             <Download className="w-4 h-4" />
             <span>Download Free Desktop App (Windows)</span>
@@ -162,25 +164,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
           
           <button
             onClick={onExplorePro}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 font-medium text-sm transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200/70 dark:bg-slate-800/60 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-200 border border-slate-200 dark:border-slate-700/60 font-medium text-sm transition-all cursor-pointer"
           >
-            <span>Founder's Lifetime Pass (Early Access)</span>
+            <span>Founder's Lifetime Pass (₹499)</span>
             <ChevronRight className="w-4 h-4 text-slate-400" />
           </button>
         </div>
 
-        {/* Trust Badges Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl mx-auto mb-14 text-left">
-          {trustBadges.map((badge, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-[#0f1412] border border-slate-200 dark:border-emerald-500/10 text-slate-700 dark:text-slate-300 text-xs"
-            >
-              <badge.icon className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-              <span className="font-mono text-[11px] leading-tight">{badge.label}</span>
-            </div>
-          ))}
-        </div>
+        {/* Safety Net Microcopy Line eliminating fear */}
+        <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mb-8 flex items-center justify-center gap-2">
+          <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+          <span>Free Forever • No Credit Card Required • 100% On-Device Storage</span>
+        </p>
+
+        {/* Live Telemetry & Prototype Physics Proof Badges */}
+        <LiveTelemetryBadges />
 
         {/* ========================================================================= */}
         {/* Authentic StudyLoop Desktop UI Mockup Window (Matches Real App Screenshots) */}

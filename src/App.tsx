@@ -14,6 +14,10 @@ import { Footer } from './components/Footer';
 import { SocraticRescueModal } from './components/SocraticRescueModal';
 import { DownloadModal } from './components/DownloadModal';
 
+import { ProblemAgitationSection } from './components/ProblemAgitationSection';
+import { BeforeAfterSlider } from './components/BeforeAfterSlider';
+import { CinematicPauseSection } from './components/CinematicPauseSection';
+
 const LandingPage: React.FC<{
   onOpenDownload: () => void;
   onOpenSocraticModal: () => void;
@@ -27,31 +31,40 @@ const LandingPage: React.FC<{
 
   return (
     <main className="flex-1">
-      {/* 1. Hero Section */}
+      {/* 0. Hero Section (Micro-Commitment & Zero-Second Hook) */}
       <Hero
         onOpenDownload={onOpenDownload}
         onExplorePro={handleScrollToPricing}
       />
 
-      {/* 2. Closed-Loop Engine Interactive Flowchart */}
+      {/* 1. Act 01: Problem Agitation & The Illusion of Competence */}
+      <ProblemAgitationSection />
+
+      {/* 2. Act 02: The Mechanism (Closed-Loop Engine Interactive Flowchart) */}
       <FlowchartEngine onOpenSocraticDemo={onOpenSocraticModal} />
 
-      {/* 3. 8-Tier Cognitive Priority Queue Live Demo */}
+      {/* 3. Act 03: Visual Evidence (Before/After Complexity Slider) */}
+      <BeforeAfterSlider />
+
+      {/* 4. 8-Tier Cognitive Priority Queue Live Demo */}
       <PriorityQueueSimulator />
 
-      {/* 4. Deep-Dive Feature Modules & Pillars */}
+      {/* 5. Strategic White Space & Pacing Pause Section */}
+      <CinematicPauseSection />
+
+      {/* 6. Deep-Dive Feature Modules & Pillars */}
       <FeaturePillars onOpenSocraticDemo={onOpenSocraticModal} />
 
-      {/* 5. BYOK & Zero-Markup Architecture */}
+      {/* 7. Act 04: BYOK & Sovereignty Architecture */}
       <ByokArchitecture />
 
-      {/* 6. Pro Extensions Hub */}
+      {/* 8. Pro Extensions Hub */}
       <ExtensionsHub />
 
-      {/* 7. Transparent Pricing & Capability Matrix */}
+      {/* 9. Act 05: Transparent Zero-Risk Pricing & Capability Matrix */}
       <PricingSection onOpenDownload={onOpenDownload} />
 
-      {/* 8. Frequently Asked Questions Accordion */}
+      {/* 10. Frequently Asked Questions Accordion */}
       <FaqSection />
     </main>
   );

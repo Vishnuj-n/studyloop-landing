@@ -12,6 +12,7 @@ import {
   ExternalLink,
   LogIn
 } from 'lucide-react';
+import { ScrollTimelineNav } from './ScrollTimelineNav';
 
 interface NavbarProps {
   onOpenDownload: () => void;
@@ -47,18 +48,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenDownload }) => {
           </span>
         </div>
 
-        {/* Center: Streamlined Nav Links */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-xs font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors tracking-wide"
-            >
-              {link.name}
-            </a>
-          ))}
-        </nav>
+        {/* Center: Dynamic Scroll-Triggered Narrative Timeline */}
+        <ScrollTimelineNav />
 
         {/* Right: Actions */}
         <div className="hidden sm:flex items-center gap-4">

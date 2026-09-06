@@ -183,15 +183,15 @@ export const FlowchartEngine: React.FC<FlowchartEngineProps> = ({
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-8">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-mono font-medium uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-600 dark:text-sky-400 text-xs font-mono font-bold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5 text-sky-500" />
-            Deterministic Cognitive Engine
+            Act 02: The Mechanism
           </div>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">
             The Closed-Loop Learning Circuit
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
-            Interactive state machine — choose a remediation mode and click an outcome to test the circuit.
+            A deterministic state machine that guarantees you never get stuck, never panic, and never forget.
           </p>
         </div>
 
@@ -391,11 +391,11 @@ export const FlowchartEngine: React.FC<FlowchartEngineProps> = ({
                   </span>
                 </div>
                 <span className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-mono font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400">
-                  sqlite-vec
+                  sqlite-vec (Fast Local Index)
                 </span>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">
-                Boundary-snapping PDF chunks at natural concept breaks.
+                Smart Chapter Snapping — splits PDFs at natural paragraph breaks so you never read cut-off sentences.
               </p>
             </div>
 
@@ -562,7 +562,7 @@ export const FlowchartEngine: React.FC<FlowchartEngineProps> = ({
               icon={<Trophy className="w-4 h-4" />}
               label="Pass: Retention"
               badge="Unlocked"
-              description="FSRS-4 Spaced Decay + 10th Milestone Aggregate Exam."
+              description="FSRS-4 Spaced Decay (calculates the exact optimal day to review before you forget) + Milestone Exam."
             />
 
             {/* Outcome B: Strike 1 */}
