@@ -21,6 +21,7 @@ interface QueueItem {
   tierName: string;
   notebook: string;
   weight: number;
+  priorityLabel: string;
   title: string;
   status: 'pending' | 'active' | 'completed';
   badgeColor: string;
@@ -30,80 +31,88 @@ const INITIAL_QUEUE: QueueItem[] = [
   {
     id: 't-1',
     tier: 1,
-    tierName: 'FLASHCARD_GENERATE',
-    notebook: 'Operating Systems (OSTEP)',
+    tierName: 'Create Flashcards',
+    notebook: 'Computer Systems',
     weight: 1.5,
-    title: 'Generate 4 FSRS-4 Cards from Paging Architecture (§14.2)',
+    priorityLabel: 'High Priority (1.5x)',
+    title: 'Generate 4 review cards on Memory Management & Caching',
     status: 'pending',
     badgeColor: 'bg-sky-500/10 text-sky-700 dark:text-sky-400 border-sky-500/20'
   },
   {
     id: 't-2',
     tier: 2,
-    tierName: 'SOCRATIC_REMEDIAL',
-    notebook: 'Distributed Systems (MIT 6.824)',
+    tierName: 'AI Concept Tutor',
+    notebook: 'Distributed Networks',
     weight: 1.2,
-    title: 'Diagnose Misconception: Raft Leader Election Split Brain',
+    priorityLabel: 'High Priority (1.2x)',
+    title: 'Clarify Misconception: How cluster nodes elect a leader safely',
     status: 'pending',
     badgeColor: 'bg-rose-500/10 text-rose-700 dark:text-rose-400 border-rose-500/20'
   },
   {
     id: 't-3',
     tier: 3,
-    tierName: 'FLASHCARD_REVIEW',
-    notebook: 'Database Internals',
+    tierName: 'Spaced Review',
+    notebook: 'Database Architecture',
     weight: 1.0,
-    title: 'Review 8 FSRS-4 Cards due today (B-Tree Balancing)',
+    priorityLabel: 'Normal Priority (1.0x)',
+    title: 'Review 8 flashcards due today (Index Balancing & Lookups)',
     status: 'pending',
     badgeColor: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/20'
   },
   {
     id: 't-4',
     tier: 4,
-    tierName: 'REREAD',
-    notebook: 'Operating Systems (OSTEP)',
+    tierName: 'Targeted Re-Read',
+    notebook: 'Computer Systems',
     weight: 1.5,
-    title: 'Targeted Review: TLB Miss Handling & Multi-Level Paging',
+    priorityLabel: 'High Priority (1.5x)',
+    title: 'Quick 3-min refresher: Handling memory page misses',
     status: 'pending',
     badgeColor: 'bg-amber-500/10 text-amber-700 dark:text-amber-400 border-amber-500/20'
   },
   {
     id: 't-5',
     tier: 5,
-    tierName: 'QUIZ',
+    tierName: 'Checkpoint Quiz',
     notebook: 'Computer Networking',
     weight: 0.9,
-    title: 'Synchronous Validation: TCP Congestion Control (Tahoe vs Reno)',
+    priorityLabel: 'Normal Priority (0.9x)',
+    title: 'Comprehension Check: How internet traffic congestion is controlled',
     status: 'pending',
     badgeColor: 'bg-slate-200/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700'
   },
   {
     id: 't-6',
     tier: 6,
-    tierName: 'MILESTONE_EXAM',
-    notebook: 'Operating Systems (OSTEP)',
+    tierName: 'Milestone Exam',
+    notebook: 'Computer Systems',
     weight: 1.5,
-    title: 'Milestone Exam #2: Virtual Memory & Concurrency (20 Questions)',
+    priorityLabel: 'High Priority (1.5x)',
+    title: 'Milestone Exam #2: Memory & Concurrency (20 Questions)',
     status: 'pending',
     badgeColor: 'bg-sky-500/10 text-sky-700 dark:text-sky-400 border-sky-500/20'
   },
   {
     id: 't-7',
     tier: 7,
-    tierName: 'READING',
-    notebook: 'Distributed Systems (MIT 6.824)',
+    tierName: 'Active Reading',
+    notebook: 'Distributed Networks',
     weight: 1.2,
-    title: 'Read Chunk #18: Paxos Consensus State Machine Replication',
+    priorityLabel: 'High Priority (1.2x)',
+    title: 'Next Chapter: How decentralized systems maintain consistency',
     status: 'pending',
     badgeColor: 'bg-slate-100 dark:bg-slate-800/60 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-700'
   },
   {
     id: 't-8',
     tier: 8,
-    tierName: 'EXAMINER',
-    notebook: 'Database Internals',
+    tierName: 'Written Assessment',
+    notebook: 'Database Architecture',
     weight: 1.0,
-    title: 'Written Assessment: Write-Ahead Logging (WAL) Recovery Rubric',
+    priorityLabel: 'Normal Priority (1.0x)',
+    title: 'Short-Answer Response: Database crash recovery protocols',
     status: 'pending',
     badgeColor: 'bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-300 border-slate-300 dark:border-slate-700'
   }
@@ -187,7 +196,7 @@ export const PriorityQueueSimulator: React.FC = () => {
                       {activeTask.title}
                     </p>
                     <p className="text-[11px] font-mono text-slate-500 dark:text-slate-400 mt-1">
-                      {activeTask.notebook} (Weight: {activeTask.weight})
+                      {activeTask.notebook} · <span className="text-emerald-600 dark:text-emerald-400 font-medium">{activeTask.priorityLabel}</span>
                     </p>
                   </div>
                 ) : (
@@ -240,7 +249,7 @@ export const PriorityQueueSimulator: React.FC = () => {
                           {task.tierName}
                         </span>
                         <span className="text-[11px] font-mono text-slate-500">
-                          {task.notebook} (W: {task.weight})
+                          {task.notebook} · <span className="text-slate-400">{task.priorityLabel}</span>
                         </span>
                       </div>
                       <p className={`text-xs sm:text-sm font-medium ${task.status === 'completed' ? 'line-through text-slate-400' : 'text-slate-900 dark:text-slate-100'}`}>

@@ -20,9 +20,10 @@ import {
 } from 'lucide-react';
 
 export const ExtensionsHub: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'youtube' | 'audio' | 'simplify' | 'future'>('youtube');
+  const [activeTab, setActiveTab] = useState<'youtube' | 'audio' | 'simplify' | 'ingestion'>('youtube');
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [simplifyMode, setSimplifyMode] = useState<'original' | 'simplified'>('simplified');
+  const [pdfExtractionMode, setPdfExtractionMode] = useState<'raw' | 'extracted'>('extracted');
 
   const extensionsList = [
     {
@@ -31,15 +32,15 @@ export const ExtensionsHub: React.FC = () => {
       tier: 'Free',
       icon: Youtube,
       color: 'text-rose-600 dark:text-rose-400 bg-rose-500/10 border-rose-500/20',
-      shortDesc: 'Transcribes & chunks video lectures into timestamped reading chunks with synchronized video jumping & validation quizzes.'
+      shortDesc: 'Converts video lectures into timestamped reading sections with synchronized video jumping and checkpoint quizzes.'
     },
     {
       id: 'audio',
-      name: 'Audio Overview (Edge TTS)',
+      name: 'Audio Overview & Podcasts',
       tier: 'Pro',
       icon: Headphones,
       color: 'text-sky-600 dark:text-sky-400 bg-sky-500/10 border-sky-500/20',
-      shortDesc: 'Generates two-host podcast briefings streamed on-device using Microsoft Edge TTS for auditory learners handling dense chapters.'
+      shortDesc: 'Generates two-host podcast briefings on your device so you can listen and learn on the go with zero cloud fees.'
     },
     {
       id: 'simplify',
@@ -47,15 +48,15 @@ export const ExtensionsHub: React.FC = () => {
       tier: 'Free',
       icon: Sparkles,
       color: 'text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border-emerald-500/20',
-      shortDesc: '1-click refactoring of dense academic proofs, math, and jargon into clear structured Markdown notes inside the Reader.'
+      shortDesc: '1-click conversion of complex academic proofs, jargon, and dense text into clean, easy-to-read bullet notes.'
     },
     {
-      id: 'future',
-      name: 'Vault & MarkItDown Importers',
+      id: 'ingestion',
+      name: 'Deep Ingestion & PDF Extraction',
       tier: 'Pro',
-      icon: FolderArchive,
+      icon: FileText,
       color: 'text-purple-600 dark:text-purple-400 bg-purple-500/10 border-purple-500/20',
-      shortDesc: 'Notion/Obsidian vault sync, folder-as-book parser, and all new importers released for 12 months.'
+      shortDesc: 'Smartly parses multi-column textbooks, research papers, and notes into structured chapters without formatting mess.'
     }
   ];
 
@@ -69,10 +70,10 @@ export const ExtensionsHub: React.FC = () => {
             Extensible Cognitive Power
           </div>
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-3">
-            Extensions That Seamlessly Feed Your Queue
+            Extensions That Power Your Study Queue
           </h2>
           <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Enhance your study workflow with multi-modal video lecture ingestion, on-device conversational audio briefings, and free 1-click proof simplifiers.
+            Turn video lectures, complex PDFs, and dense textbooks into clean, quiz-ready study sessions automatically.
           </p>
         </div>
 
@@ -111,8 +112,10 @@ export const ExtensionsHub: React.FC = () => {
                   </p>
                 </div>
                 
-                <div className="pt-3 mt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-700 dark:text-slate-300 font-medium">
-                  <span>{isSelected ? 'Active Preview' : 'Inspect'}</span>
+                <div className="pt-3 mt-3 border-t border-slate-100 dark:border-white/5 flex items-center justify-between text-[11px] font-mono font-medium">
+                  <span className={isSelected ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-slate-500 dark:text-slate-400'}>
+                    {isSelected ? '✓ Viewing Demo' : 'View Demo'}
+                  </span>
                   <ArrowRight className="w-3 h-3 text-slate-400" />
                 </div>
               </button>
@@ -323,55 +326,88 @@ export const ExtensionsHub: React.FC = () => {
             </div>
           )}
 
-          {/* 4. Future Importers Tab */}
-          {activeTab === 'future' && (
+          {/* 4. Deep Ingestion & PDF Extraction Tab */}
+          {activeTab === 'ingestion' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-              <div className="lg:col-span-6 space-y-4">
+              <div className="lg:col-span-5 space-y-4">
                 <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20 text-xs font-mono">
-                  <FolderArchive className="w-3.5 h-3.5" />
-                  <span>Pro Extension: 12-Month Importers Pass</span>
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Pro Extension: Deep Ingestion Engine</span>
                 </div>
                 <h3 className="font-display text-2xl font-bold text-slate-900 dark:text-white">
-                  Continuous Upgrades & Knowledge Vault Importers
+                  Flawless Extraction for Multi-Column Papers & Textbooks
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                  Your Pro Pass includes every new ingestion engine released over the next 12 months, including direct Obsidian/Notion markdown vaults and Microsoft MarkItDown connectors.
+                  Academic papers and textbooks are filled with double columns, diagrams, and sidebars that break standard copy-pasting. StudyLoop reconstructs reading order naturally so you can study without cleaning up formatting errors.
                 </p>
-                <div className="grid grid-cols-2 gap-2 text-xs font-mono text-slate-700 dark:text-slate-300">
-                  <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5">
-                    ✓ Notion Vault Sync
-                  </div>
-                  <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5">
-                    ✓ Obsidian Canvas Importer
-                  </div>
-                  <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5">
-                    ✓ Folder-as-Book Parser
-                  </div>
-                  <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-white/[0.03] border border-slate-200 dark:border-white/5">
-                    ✓ EPUB & LaTeX Support
-                  </div>
+
+                <div className="flex gap-2 pt-2">
+                  <button
+                    onClick={() => setPdfExtractionMode('raw')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
+                      pdfExtractionMode === 'raw'
+                        ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-semibold'
+                        : 'border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    Raw 2-Column PDF
+                  </button>
+                  <button
+                    onClick={() => setPdfExtractionMode('extracted')}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-mono transition-colors ${
+                      pdfExtractionMode === 'extracted'
+                        ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-950 font-semibold'
+                        : 'border border-slate-300 dark:border-white/10 text-slate-600 dark:text-slate-400'
+                    }`}
+                  >
+                    ✨ Structured Study Chapter
+                  </button>
                 </div>
               </div>
 
-              {/* Roadmap Timeline */}
-              <div className="lg:col-span-6 rounded-2xl bg-slate-900 dark:bg-black/60 border border-slate-300 dark:border-white/10 p-5 font-mono text-xs text-slate-300 space-y-3">
+              {/* Ingestion Preview Showcase */}
+              <div className="lg:col-span-7 rounded-2xl bg-slate-900 dark:bg-black/60 border border-slate-300 dark:border-white/10 p-5 font-mono text-xs space-y-3">
                 <div className="flex items-center justify-between pb-2 border-b border-white/10 text-[11px]">
-                  <span className="text-purple-400 font-semibold">12-MONTH PRO UPGRADE ROADMAP</span>
-                  <span className="text-slate-500">No Recurring Billing</span>
+                  <span className="text-purple-400 font-semibold">
+                    {pdfExtractionMode === 'raw' ? 'RAW 2-COLUMN PDF INPUT' : 'EXTRACTED STUDY NOTEBOOK CHUNK'}
+                  </span>
+                  <span className="text-slate-400">ArXiv / Textbook Parser</span>
                 </div>
-                <div className="space-y-2.5 text-xs">
-                  <div className="flex items-center justify-between p-2 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300">
-                    <span>Q1: YouTube Ingestion & Edge-TTS Audio Engine</span>
-                    <span className="text-[10px] font-bold">RELEASED</span>
+
+                {pdfExtractionMode === 'raw' ? (
+                  <div className="p-4 rounded-xl bg-slate-950 border border-white/10 text-slate-400 text-xs leading-relaxed space-y-2">
+                    <div className="grid grid-cols-2 gap-3 text-[11px] opacity-75 font-mono">
+                      <div className="p-2 border border-dashed border-slate-700 rounded">
+                        <span className="text-[10px] text-slate-500 block mb-1">Column A</span>
+                        "In distributed storage systems, consensus proto- [1] cols must resolve split..."
+                      </div>
+                      <div className="p-2 border border-dashed border-slate-700 rounded">
+                        <span className="text-[10px] text-slate-500 block mb-1">Column B</span>
+                        "...brain states during net- work partition. Figure 3 shows leader election."
+                      </div>
+                    </div>
+                    <span className="text-[10px] text-amber-400 block font-mono mt-1">
+                      ⚠️ Scrambled columns, broken hyphens, and misplaced figures.
+                    </span>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded bg-white/[0.03] border border-white/5 text-slate-300">
-                    <span>Q2: Obsidian & Notion Vault Connectors</span>
-                    <span className="text-[10px] text-sky-400 font-semibold">IN PROGRESS</span>
+                ) : (
+                  <div className="p-4 rounded-xl bg-slate-950 border border-purple-500/20 text-slate-200 text-xs leading-relaxed space-y-2">
+                    <div className="text-purple-400 font-bold font-sans text-sm mb-1">
+                      Section 3.2: Resolving Network Partitions
+                    </div>
+                    <p className="font-sans text-xs text-slate-300 leading-normal">
+                      In distributed storage systems, consensus protocols must resolve split-brain states when nodes are isolated by a network partition.
+                    </p>
+                    <div className="p-2 rounded bg-purple-500/10 border border-purple-500/20 text-[11px] text-purple-300 font-mono">
+                      ✓ Reordered text columns · Stripped OCR noise · Linked to Checkpoint Quiz #5
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between p-2 rounded bg-white/[0.03] border border-white/5 text-slate-400">
-                    <span>Q3: MarkItDown Office & EPUB Parser</span>
-                    <span className="text-[10px] text-slate-500">QUEUED</span>
-                  </div>
+                )}
+
+                <div className="pt-2 border-t border-white/5 grid grid-cols-2 sm:grid-cols-3 gap-2 text-[10px] text-slate-400">
+                  <span>✓ 2-Column Papers</span>
+                  <span>✓ Math & Tables</span>
+                  <span>✓ Obsidian & Notion</span>
                 </div>
               </div>
             </div>

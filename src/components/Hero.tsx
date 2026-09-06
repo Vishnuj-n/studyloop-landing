@@ -66,24 +66,24 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
   const [showFlashcardAnswer, setShowFlashcardAnswer] = useState(false);
   const flashcards = [
     {
-      q: "What is a mutex in Go and how does it ensure mutual exclusion?",
-      a: "A sync.Mutex provides exclusive locking so that only one goroutine can access a critical section or shared memory at a time, preventing race conditions via Lock() and Unlock()."
+      q: "Why does computer memory use a caching hierarchy?",
+      a: "Fast memory (L1/L2 cache) sits directly next to the CPU to store frequently requested data, avoiding slow read cycles from disk storage."
     },
     {
-      q: "How does goroutine scheduling differ from OS thread scheduling in Go?",
-      a: "Goroutines are multiplexed onto OS threads via the Go runtime M:N scheduler (work stealing), requiring only ~2KB of initial stack compared to ~1-8MB for OS threads."
+      q: "What is mutual exclusion (Mutex) in concurrent programming?",
+      a: "A mutex provides a safety lock so only one task can modify shared data at a time, preventing accidental data corruption."
     },
     {
-      q: "What is the role of channels in Go's CSP concurrency model?",
-      a: "Channels provide typed conduits through which goroutines synchronize execution and communicate values without explicit locks: 'Do not communicate by sharing memory; instead, share memory by communicating.'"
+      q: "What is the difference between latency and throughput?",
+      a: "Latency is the delay taken to complete a single operation, while throughput is the total volume of operations completed per second."
     },
     {
-      q: "When should you use sync.RWMutex over a standard sync.Mutex?",
-      a: "Use sync.RWMutex when read operations significantly outnumber write operations, allowing concurrent readers (RLock) while retaining exclusive locks for writers."
+      q: "Why is write-ahead logging crucial for database safety?",
+      a: "It records every change in a recovery log before updating files, guaranteeing that data can be cleanly restored after a power failure."
     },
     {
-      q: "What causes a goroutine leak in Go applications?",
-      a: "Goroutine leaks occur when a goroutine is launched but blocked indefinitely on a channel receive/send or unclosed resource, preventing the garbage collector from reclaiming its memory."
+      q: "What is the primary benefit of spaced repetition (FSRS-4)?",
+      a: "Reviewing concepts right before you are about to forget them strengthens memory pathways and transitions knowledge into permanent recall."
     }
   ];
 
@@ -93,7 +93,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
   const [socraticMessages, setSocraticMessages] = useState<Array<{ sender: 'user' | 'tutor'; text: string }>>([
     {
       sender: 'tutor',
-      text: "Welcome to Guided Socratic Thinking. Before we write mutex lock code, what happens if two goroutines write to the exact same map concurrently without synchronization?"
+      text: "Welcome to Guided Socratic Thinking! Let's explore caching: What happens to computer speed if the processor has to read from slow disk storage for every single calculation?"
     }
   ]);
 
@@ -103,9 +103,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenDownload, onExplorePro }) => {
   const [extYoutubeEnabled, setExtYoutubeEnabled] = useState(false);
 
   const trustBadges = [
-    { label: '100% Local Privacy (ONNX Embeddings)', icon: Database },
+    { label: '100% Local Privacy (On-Device Storage)', icon: Database },
     { label: 'Bring Your Own Key (Gemini, OpenAI, Ollama)', icon: Key },
-    { label: '2-Strike Socratic Concept Rescue', icon: RefreshCw },
+    { label: 'Socratic AI Concept Rescue', icon: RefreshCw },
     { label: 'Zero Monthly Subscriptions', icon: CreditCard },
   ];
 

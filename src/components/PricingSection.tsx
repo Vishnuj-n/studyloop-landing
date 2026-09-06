@@ -13,23 +13,23 @@ interface PricingSectionProps {
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }) => {
   const comparisonRows = [
-    { feature: 'Deterministic 8-Tier Cognitive Study Queue', free: true, annual: true, pro: true },
-    { feature: 'Pure Go Native PDF Engine (Zero Python Runtime Dependency)', free: true, annual: true, pro: true },
-    { feature: 'Trust-Based Reading (User-Paced, No Surveillance Timers)', free: true, annual: true, pro: true },
-    { feature: 'Smart Concept-Aware Reading Boundaries (sqlite-vec, No Cliffhangers)', free: true, annual: true, pro: true },
-    { feature: 'Synchronous Active Comprehension Quizzes', free: true, annual: true, pro: true },
-    { feature: 'FSRS-4 Spaced Repetition Engine (Decoupled & Batched)', free: true, annual: true, pro: true },
-    { feature: 'Dual-Track Socratic Rescue (In-App + Prompt Export)', free: true, annual: true, pro: true },
-    { feature: 'Graceful Queue Unblocking (external_help_required Flag)', free: true, annual: true, pro: true },
-    { feature: 'Deterministic Milestone Exams (10-Quiz Question Pooling, 0 Token Cost)', free: true, annual: true, pro: true },
-    { feature: 'Examiner Written Assessment Rubric Mode', free: true, annual: true, pro: true },
-    { feature: 'AI Text Simplifier (Proofs & Jargon into Structured Markdown)', free: true, annual: true, pro: true },
+    { feature: 'Smart 8-Tier Daily Study Queue', free: true, annual: true, pro: true },
+    { feature: 'Fast Native PDF Reader (Runs locally, zero setup)', free: true, annual: true, pro: true },
+    { feature: 'Trust-Based Reading (User-paced, no surveillance timers)', free: true, annual: true, pro: true },
+    { feature: 'Smart Chapter Boundaries (No mid-sentence cutoffs)', free: true, annual: true, pro: true },
+    { feature: 'Active Comprehension Checkpoint Quizzes', free: true, annual: true, pro: true },
+    { feature: 'Modern Spaced Repetition (FSRS-4 Memory Engine)', free: true, annual: true, pro: true },
+    { feature: 'Socratic Concept Rescue & AI Tutor (In-App + Prompt Export)', free: true, annual: true, pro: true },
+    { feature: 'Smooth Queue Scheduling (No infinite lockouts)', free: true, annual: true, pro: true },
+    { feature: 'Milestone Comprehensive Exams (10-Quiz Question Pool, 0 Extra AI Cost)', free: true, annual: true, pro: true },
+    { feature: 'Examiner Written Assessment & Instant AI Rubrics', free: true, annual: true, pro: true },
+    { feature: 'AI Text Simplifier (Converts dense text & jargon into clean notes)', free: true, annual: true, pro: true },
     { feature: 'Full BYOK Support (Gemini Free, Groq, Ollama, OpenAI)', free: true, annual: true, pro: true },
     { feature: 'YouTube Lecture Ingestion & Synchronized Video Queue', free: true, annual: true, pro: true },
-    { feature: 'Deep Structured PDF Parsing (2-Column Academic Papers, Multi-Row Tables & Code Blocks)', free: false, annual: true, pro: true, highlight: true },
-    { feature: 'Edge-TTS On-Device Two-Host Conversational Audio Briefings / Podcasts', free: false, annual: true, pro: true, highlight: true },
-    { feature: '12-Month Access to All Pro Importers & Future Extensions', free: false, annual: true, pro: true, highlight: true },
-    { feature: 'Founder Badge & Lifetime Access to All Future Pro Importers Forever', free: false, annual: false, pro: true, highlight: true },
+    { feature: 'Deep Ingestion & PDF Extraction (2-Column Papers, Multi-Row Tables & Formulas)', free: false, annual: true, pro: true, highlight: true },
+    { feature: 'On-Device Two-Host Conversational Audio Briefings / Podcasts', free: false, annual: true, pro: true, highlight: true },
+    { feature: '12-Month Access to All Pro Extensions & Importers', free: false, annual: true, pro: true, highlight: true },
+    { feature: 'Founder Badge & Lifetime Access to All Future Extensions Forever', free: false, annual: false, pro: true, highlight: true },
     { feature: 'Direct Indie Developer Support & Roadmap Priority', free: false, annual: true, pro: true, highlight: true },
     { feature: 'Instant Activation via Registered Clerk Account Email', free: false, annual: true, pro: true, highlight: true },
   ];
@@ -72,7 +72,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                   <span className="text-xs font-mono text-slate-500">/ forever</span>
                 </div>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
-                  For students and sovereign learners who want 100% local, private study without cloud toll.
+                  For students and independent learners who want 100% local, private study without cloud toll.
                 </p>
               </div>
 
@@ -83,27 +83,27 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Pure Go Native PDF Engine (Zero Python)</span>
+                  <span>Fast Native PDF Reader (Runs Locally)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Smart Vector Boundaries (<code className="font-mono text-[11px]">sqlite-vec</code>)</span>
+                  <span>Smart Chapter Boundaries (No Mid-Sentence Cuts)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Dual-Track Socratic Concept Rescue</span>
+                  <span>Socratic Concept Tutor & Instant Rescue</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>Deterministic Milestone Exams</span>
+                  <span>Milestone Comprehensive Exams</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>FSRS-4 Spaced Repetition Engine</span>
+                  <span>Modern Spaced Repetition (FSRS-4 Engine)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                  <span>AI Text Simplifier (Proofs into Markdown)</span>
+                  <span>AI Text Simplifier (Dense Text into Markdown)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
@@ -159,7 +159,7 @@ export const PricingSection: React.FC<PricingSectionProps> = ({ onOpenDownload }
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
-                  <span>Deep Structured PDF (2-Column Papers & Tables)</span>
+                  <span>Deep Ingestion & PDF Extraction (2-Column Papers & Tables)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Check className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400 shrink-0" />
